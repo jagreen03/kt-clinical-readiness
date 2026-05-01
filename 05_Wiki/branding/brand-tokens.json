@@ -1,0 +1,21 @@
+﻿{
+  "color": {
+    "purple": "#7C3AED",
+    "green": "#10B981",
+    "blue": "#3B82F6",
+    "text-dark": "#1F2937",
+    "text-light": "#FFFFFF",
+    "bg-dark": "#0F172A",
+    "bg-light": "#FFFFFF",
+    "text-muted": "#94A3B8"
+  },
+  "radius": {
+    "sm": "6px",
+    "md": "14px",
+    "lg": "28px",
+    "xl": "40px"
+  },
+  "font": {
+    "family": "Arial, Helvetica, sans-serif"
+  }
+}
