@@ -1,15 +1,55 @@
 # Backups produced by consolidate-vault.ps1 and any future cleanup scripts
 *.bak.*/
 
-# RAG vector store and on-disk caches (regenerable, can be large)
+# RAG local-only artifacts (machine-specific, regenerable, large)
 07_RAG/embeddings/*.db
 07_RAG/embeddings/*.db-wal
 07_RAG/embeddings/*.db-shm
-
-# Local Ollama model caches if you ever stage them inside the vault
+07_RAG/embeddings/*.sqlite*
+07_RAG/manifest.jsonl
 07_RAG/models/
 
-# Scratch downloads or partial extracts (defensive: should not appear, but in case)
+# Hardware planning -- personal machine only per KTS-0000001 close-out
+08_HW/
+
+# Elevance source documents -- local RAG access only, never push to origin
+00_Inbox/Elevance_Clinical_KT_Activity.docx
+00_Inbox/Elevance_Clinical_Preparation.pptx
+00_Inbox/Elevance_Clinical_TechStack_Activity.xlsx
+
+# Secrets -- ABSOLUTE, never commit
+**/.env
+**/.env.*
+**/application-dev.yml
+**/application-local.yml
+**/application-secret*.yml
+**/*-secret*
+**/*-secrets*
+**/secrets/
+**/credentials.json
+*.pem
+*.key
+*.pfx
+*.p12
+id_rsa
+id_ed25519
+
+# Build artifacts (Spring Boot, Maven, Gradle)
+target/
+build/
+.gradle/
+*.class
+*.jar
+*.war
+.mvn/
+
+# Node / Angular
+node_modules/
+dist/
+.angular/
+*.log
+
+# Scratch downloads or partial extracts
 Files_*/
 *.zip
 
@@ -20,7 +60,7 @@ desktop.ini
 .vscode/
 .idea/
 
-# Python virtualenv if you build one for ingest.py
+# Python virtualenv
 .venv/
 __pycache__/
 *.pyc
