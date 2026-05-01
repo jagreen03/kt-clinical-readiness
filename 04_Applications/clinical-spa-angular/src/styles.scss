@@ -1,0 +1,41 @@
+﻿// TriadStack brand integration
+@import "assets/branding/brand-tokens";
+
+// Global app baseline using brand tokens
+html, body {
+  height: 100%;
+  margin: 0;
+  font-family: $kt-font-family;
+  background: $kt-bg-light;
+  color: $kt-text-on-light;
+}
+
+// Main content area
+.kt-main {
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+// Reusable primary button (front layer of PGB doctrine)
+.kt-button-primary {
+  background: $kt-purple;
+  color: $kt-text-on-light;
+  border: none;
+  border-radius: $kt-radius-md;
+  padding: 0.75rem 1.5rem;
+  font-family: $kt-font-family;
+  font-weight: $kt-font-weight-bold;
+  cursor: pointer;
+  transition: background 150ms ease;
+}
+
+.kt-button-primary:hover {
+  background: $kt-blue;
+  color: #FFFFFF;
+}
+
+.kt-button-primary:focus-visible {
+  outline: 2px solid $kt-text-green-on-light;
+  outline-offset: 2px;
+}

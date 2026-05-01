@@ -1,0 +1,39 @@
+﻿@import "../../../assets/branding/brand-tokens";
+
+.kt-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 2rem;
+  background: $kt-bg-dark;
+  color: $kt-text-on-dark;
+}
+
+.kt-header-logo img {
+  height: 48px;
+  display: block;
+}
+
+.kt-header-nav {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.kt-header-nav a {
+  color: $kt-text-on-dark;
+  text-decoration: none;
+  font-family: $kt-font-family;
+  font-weight: $kt-font-weight-medium;
+  padding: 0.25rem 0;
+  border-bottom: 2px solid transparent;
+  transition: border-color 150ms ease, color 150ms ease;
+}
+
+.kt-header-nav a:hover {
+  color: $kt-text-green-on-dark;
+  border-bottom-color: $kt-text-green-on-dark;
+}
+
+.kt-header-nav a.active {
+  border-bottom-color: $kt-text-purple-on-dark;
+}

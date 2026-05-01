@@ -1,0 +1,84 @@
+﻿/* KT Clinical Readiness brand tokens */
+/* Per WCAG 2.1 AA contrast verification (Gemini KTS-0000004) */
+
+:root {
+  /* Brand hex - logos and large structural elements only */
+  --kt-purple: #7C3AED;
+  --kt-green: #10B981;
+  --kt-blue: #3B82F6;
+
+  /* Geometry */
+  --kt-radius-sm: 6px;
+  --kt-radius-md: 14px;
+  --kt-radius-lg: 28px;
+  --kt-radius-xl: 40px;
+
+  /* Typography */
+  --kt-font-family: "Inter", system-ui, "Arial", sans-serif;
+  --kt-font-weight-regular: 400;
+  --kt-font-weight-medium: 500;
+  --kt-font-weight-bold: 700;
+  --kt-font-weight-black: 900;
+
+  /* Light mode (default) */
+  --kt-bg: #FFFFFF;
+  --kt-text: #1F2937;
+  --kt-text-muted: #475569;
+  --kt-text-purple: #7C3AED;
+  --kt-text-green: #047857;
+  --kt-text-blue: #1D4ED8;
+}
+
+/* Dark mode (auto via OS preference) */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) {
+    --kt-bg: #0F172A;
+    --kt-text: #F1F5F9;
+    --kt-text-muted: #94A3B8;
+    --kt-text-purple: #A78BFA;
+    --kt-text-green: #10B981;
+    --kt-text-blue: #3B82F6;
+  }
+}
+
+/* High contrast (auto via OS preference) */
+@media (prefers-contrast: more) {
+  :root:not([data-theme]) {
+    --kt-bg: #FFFFFF;
+    --kt-text: #000000;
+    --kt-text-muted: #000000;
+    --kt-text-purple: #5B21B6;
+    --kt-text-green: #064E3B;
+    --kt-text-blue: #1E3A8A;
+  }
+}
+
+/* Manual override: data-theme="light" */
+:root[data-theme="light"] {
+  --kt-bg: #FFFFFF;
+  --kt-text: #1F2937;
+  --kt-text-muted: #475569;
+  --kt-text-purple: #7C3AED;
+  --kt-text-green: #047857;
+  --kt-text-blue: #1D4ED8;
+}
+
+/* Manual override: data-theme="dark" */
+:root[data-theme="dark"] {
+  --kt-bg: #0F172A;
+  --kt-text: #F1F5F9;
+  --kt-text-muted: #94A3B8;
+  --kt-text-purple: #A78BFA;
+  --kt-text-green: #10B981;
+  --kt-text-blue: #3B82F6;
+}
+
+/* Manual override: data-theme="high-contrast" */
+:root[data-theme="high-contrast"] {
+  --kt-bg: #FFFFFF;
+  --kt-text: #000000;
+  --kt-text-muted: #000000;
+  --kt-text-purple: #5B21B6;
+  --kt-text-green: #064E3B;
+  --kt-text-blue: #1E3A8A;
+}
