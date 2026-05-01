@@ -1,13 +1,35 @@
 ﻿{
   "color": {
-    "purple": "#7C3AED",
-    "green": "#10B981",
-    "blue": "#3B82F6",
-    "text-dark": "#1F2937",
-    "text-light": "#FFFFFF",
-    "bg-dark": "#0F172A",
-    "bg-light": "#FFFFFF",
-    "text-muted": "#94A3B8"
+    "brand": {
+      "purple": "#7C3AED",
+      "green": "#10B981",
+      "blue": "#3B82F6"
+    },
+    "bg": {
+      "light": "#FFFFFF",
+      "dark": "#0F172A",
+      "hc-light": "#FFFFFF",
+      "hc-dark": "#000000"
+    },
+    "fg": {
+      "on-light": "#1F2937",
+      "on-dark": "#F1F5F9",
+      "on-hc-light": "#000000",
+      "on-hc-dark": "#FFFFFF",
+      "muted-on-light": "#475569",
+      "muted-on-dark": "#94A3B8"
+    },
+    "brand-text": {
+      "purple-on-light": "#7C3AED",
+      "purple-on-dark": "#A78BFA",
+      "purple-on-hc": "#5B21B6",
+      "green-on-light": "#047857",
+      "green-on-dark": "#10B981",
+      "green-on-hc": "#064E3B",
+      "blue-on-light": "#1D4ED8",
+      "blue-on-dark": "#3B82F6",
+      "blue-on-hc": "#1E3A8A"
+    }
   },
   "radius": {
     "sm": "6px",
@@ -16,6 +38,12 @@
     "xl": "40px"
   },
   "font": {
-    "family": "Arial, Helvetica, sans-serif"
+    "family": "Inter, system-ui, Arial, sans-serif",
+    "weight": {
+      "regular": 400,
+      "medium": 500,
+      "bold": 700,
+      "black": 900
+    }
   }
 }

@@ -1,73 +1,59 @@
-﻿# KT Clinical Branding
+﻿# KT Clinical Readiness branding
 
-Brand asset set for the KT Clinical Readiness vault and the projects under 04_Applications. Use these in:
+Two brands sharing one color system, one shape grammar, and one PGB doctrine.
 
-- Spring Boot project READMEs and Thymeleaf templates
-- JSP page headers
-- Angular SPA toolbar and favicon
-- GitHub repo social cards
+## When to use which
 
-## Files
-
-| File | Use |
+| Surface | Brand |
 |---|---|
-| logo-mark.svg | Just the layered mark, no text. App icons, large favicons, decorative. |
-| logo-square.svg | Primary square logo with KT monogram. Default for repo READMEs. |
-| logo-horizontal.svg | Mark plus KT Clinical wordmark. Nav bars on light backgrounds. |
-| logo-horizontal-dark.svg | Same, white wordmark for dark backgrounds. |
-| logo-mono-purple.svg | Single color purple. Print, one-color contexts. |
-| logo-mono-white.svg | White outline. Dark backgrounds, dark mode. |
-| open-graph.svg | 1200x630 social card for GitHub repo Open Graph. |
-| favicon.svg | Simplified mark for browser tabs. |
-| brand-tokens.css | CSS custom properties (colors, radii). |
-| brand-tokens.scss | SCSS variables (same tokens). |
-| brand-tokens.json | Design tokens as JSON for design tools. |
+| Personal portfolio (jagreen03/jagreen03 PORTFOLIO_README) | layeredkt/ |
+| CV-style materials | layeredkt/ |
+| Personal social cards | layeredkt/ |
+| Article author byline graphics | layeredkt/ |
+| TriadStack monorepo (jagreen03/PurpleGreenBlue) | triadstack/ |
+| Spring Boot + Angular full-stack work | triadstack/ |
+| AWS infra repos under TriadStack | triadstack/ |
+| Architectural diagrams and READMEs | triadstack/ |
 
-## Colors
+## Folder map
 
-- Purple: #7C3AED (front layer)
-- Green: #10B981 (middle layer)
-- Blue: #3B82F6 (back layer)
+| Path | Purpose |
+|---|---|
+| brand-tokens.css | CSS custom properties, three viewing modes |
+| brand-tokens.scss | SCSS variables, full token set |
+| brand-tokens.json | Design tokens for tools that consume JSON |
+| PGB.md | Doctrine: what the three layers mean |
+| README.md | This file |
+| layeredkt/ | Personal portfolio brand (KT monogram on front) |
+| triadstack/ | Architectural brand (no monogram) |
 
-The three colors layer front to back: purple front, green middle, blue back. Order is deliberate.
+## Viewing modes
 
-## Usage in Angular
+Three modes defined per Gemini KTS-0000004 (Decision 3 expand for WCAG 1.4.8):
 
-Copy this folder into src/assets/branding/ in the Angular project. Then in styles.scss:
+- light (default): white background, dark text, full-saturation logos.
+- dark: near-black background (#0F172A), light text, slightly desaturated logo colors.
+- high-contrast: pure black on pure white, brand colors paired with text labels only.
 
-@import "assets/branding/brand-tokens";
+Mode resolution order:
 
-In a component:
+1. If html element has data-theme attribute, use it (manual override).
+2. Else if OS prefers-contrast: more, use high-contrast.
+3. Else if OS prefers-color-scheme: dark, use dark.
+4. Else light (default).
 
-.app-header {
-  background: $kt-bg-dark;
-  color: $kt-text-light;
-}
+A user-facing toggle should set data-theme on the html element. This guarantees AAA-tier access regardless of OS configuration.
 
-In index.html for favicon:
+## Accessibility
 
-<link rel="icon" type="image/svg+xml" href="assets/branding/favicon.svg"/>
+WCAG 2.1 AA conformance applied to all text tokens. Brand hex codes are reserved for logos and structural elements at 3.0:1 contrast minimum. Body text uses per-mode tweaked colors:
 
-In a toolbar template:
+- Purple text: #7C3AED on light, #A78BFA on dark.
+- Green text: #047857 on light, #10B981 on dark.
+- Blue text: #1D4ED8 on light, #3B82F6 on dark.
 
-<img src="assets/branding/logo-horizontal-dark.svg" alt="KT Clinical" height="48"/>
+WCAG 1.4.1 (Use of Color): every brand color usage pairs with shape, text label, or icon. Color is never the only signal.
 
-## Usage in Spring Boot Thymeleaf
+## Font
 
-Place the SVG files in src/main/resources/static/branding/. Reference from a layout fragment:
-
-<img th:src="@{/branding/logo-horizontal.svg}" alt="KT Clinical" height="48"/>
-
-## Usage in JSP
-
-Place the SVG files in WEB-INF/static/branding/ or src/main/webapp/branding/. Reference from a JSP:
-
-<img src="<c:url value='/branding/logo-horizontal.svg'/>" alt="KT Clinical" height="48"/>
-
-## Usage as GitHub repo social card
-
-Upload open-graph.svg (or a PNG export) under repo Settings, Social preview. Recommended size 1200x630 already matches.
-
-## Cross-renderer compatibility
-
-ASCII only in all SVG content per CRSD mitigation (Cross-Renderer Syntax Drift). No em-dashes, no smart quotes, no special characters in titles or descriptions. Renders in browsers, GitHub markdown, VSCode, Obsidian, Inkscape, Figma.
+Inter, weight 400/500/700/900. CSS stack: "Inter", system-ui, "Arial", sans-serif. Inter is OFL licensed and widely available; system-ui is the fallback chain. SVG logos reference the same stack so they degrade gracefully on systems without Inter.

@@ -1,0 +1,9 @@
+﻿<svg viewBox="0 0 800 200" xmlns="http://www.w3.org/2000/svg" role="img">
+  <title>LayeredKT horizontal logo</title>
+  <desc>Mark with KT monogram plus LayeredKT wordmark for light backgrounds.</desc>
+  <rect x="50" y="50" width="120" height="120" rx="14" fill="#3B82F6"/>
+  <rect x="35" y="35" width="120" height="120" rx="14" fill="#10B981"/>
+  <rect x="20" y="20" width="120" height="120" rx="14" fill="#7C3AED"/>
+  <text x="80" y="80" font-family="Inter, system-ui, Arial, sans-serif" font-size="68" font-weight="900" fill="#FFFFFF" text-anchor="middle" dominant-baseline="central">KT</text>
+  <text x="220" y="120" font-family="Inter, system-ui, Arial, sans-serif" font-size="56" font-weight="700" fill="#1F2937">LayeredKT</text>
+</svg>

@@ -1,15 +1,48 @@
-﻿$kt-purple: #7C3AED;
+﻿// KT Clinical Readiness brand tokens
+// Per WCAG 2.1 AA contrast verification (Gemini KTS-0000004)
+
+// Brand hex - logos and large structural elements only
+$kt-purple: #7C3AED;
 $kt-green: #10B981;
 $kt-blue: #3B82F6;
-$kt-text-dark: #1F2937;
-$kt-text-light: #FFFFFF;
-$kt-bg-dark: #0F172A;
-$kt-bg-light: #FFFFFF;
-$kt-text-muted: #94A3B8;
 
+// Per-mode background tokens
+$kt-bg-light: #FFFFFF;
+$kt-bg-dark: #0F172A;
+$kt-bg-hc-light: #FFFFFF;
+$kt-bg-hc-dark: #000000;
+
+// Per-mode body text tokens
+$kt-text-on-light: #1F2937;
+$kt-text-on-dark: #F1F5F9;
+$kt-text-on-hc-light: #000000;
+$kt-text-on-hc-dark: #FFFFFF;
+
+$kt-text-muted-on-light: #475569;
+$kt-text-muted-on-dark: #94A3B8;
+
+// Per-mode brand text tokens (accessibility-tweaked)
+$kt-text-purple-on-light: #7C3AED;
+$kt-text-purple-on-dark: #A78BFA;
+$kt-text-green-on-light: #047857;
+$kt-text-green-on-dark: #10B981;
+$kt-text-blue-on-light: #1D4ED8;
+$kt-text-blue-on-dark: #3B82F6;
+
+// High-contrast brand text (deepest accessible shades)
+$kt-text-purple-on-hc: #5B21B6;
+$kt-text-green-on-hc: #064E3B;
+$kt-text-blue-on-hc: #1E3A8A;
+
+// Typography
+$kt-font-family: "Inter", system-ui, "Arial", sans-serif;
+$kt-font-weight-regular: 400;
+$kt-font-weight-medium: 500;
+$kt-font-weight-bold: 700;
+$kt-font-weight-black: 900;
+
+// Geometry
 $kt-radius-sm: 6px;
 $kt-radius-md: 14px;
 $kt-radius-lg: 28px;
 $kt-radius-xl: 40px;
-
-$kt-font-family: "Arial", "Helvetica", sans-serif;
