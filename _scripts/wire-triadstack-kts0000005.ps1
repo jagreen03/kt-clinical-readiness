@@ -5,22 +5,26 @@
 .DESCRIPTION
     Self-contained, idempotent, ASCII only.
 
-    Replaces wire-angular-branding.ps1 from KTS-0000003 which referenced the
-    pre-split flat branding/ layout. After KTS-0000004 the assets live under
-    triadstack/ and layeredkt/ subfolders; this script pulls only TriadStack
-    plus the shared substrate (brand-tokens, PGB.md, README.md).
+    FIX (revision 2): scaffold mode no longer wipes the whole target folder.
+    The previous version destroyed ng new output if you ran it after ng new.
+    Now it only overwrites the specific wiring files and wipes the branding
+    asset folder. ng new artifacts (package.json, angular.json, node_modules,
+    main.ts, app.config.ts, app.routes.ts, etc.) are preserved.
 
     Two modes.
 
     SCAFFOLD MODE (default): writes wiring kit at
         VaultRoot\04_Applications\clinical-spa-angular\
-    Wipes that folder first if it exists so orphan files do not survive.
+    Expects the folder to either be empty OR to contain ng new output.
+    Overlays TriadStack styles, header component, branding assets on top.
+    Re-running is safe: overwrites wiring files in place, wipes only
+    src\assets\branding\ before re-copying.
 
     COPY MODE (-CopyToProject "C:\path\to\angular\app"): copies branding into
-    that project's src\assets\branding\ (wiping the existing branding folder
-    first so orphans do not survive). Drops wiring snippets into KT-WIRING\
-    for manual merge. Does not touch the project's existing styles.scss,
-    index.html, or app files.
+    that project's src\assets\branding\ (wiping that folder first to clear
+    orphans). Drops wiring snippets into KT-WIRING\ for manual merge.
+    Does not touch the project's existing styles.scss, index.html, or app
+    files.
 
     Both modes ASCII only, dry-run by default.
 
@@ -36,11 +40,11 @@
 .EXAMPLE
     .\wire-triadstack-kts0000005.ps1
     .\wire-triadstack-kts0000005.ps1 -Apply
-    .\wire-triadstack-kts0000005.ps1 -CopyToProject "C:\dev\my-angular-app" -Apply
 
 .NOTES
-    Saga: KTS-0000005
+    Saga: KTS-0000005 (revision 2)
     Supersedes: _scripts/wire-angular-branding.ps1 (KTS-0000003)
+    Workflow: clean folder -> ng new -> this script.
 #>
 
 [CmdletBinding()]
@@ -120,7 +124,7 @@ if ($CopyToProject -ne "") {
 } else {
     $mode = "scaffold"
     $angularRoot = Join-Path $VaultRoot "04_Applications\clinical-spa-angular"
-    Note "Mode: SCAFFOLD (write wiring kit at $angularRoot)"
+    Note "Mode: SCAFFOLD (overlay TriadStack wiring at $angularRoot)"
 }
 if ($Apply) { Note "Action: APPLY (will mutate)" } else { Note "Action: DRY-RUN (read only)" }
 
@@ -298,39 +302,27 @@ $appComponentHtml = @'
 '@
 
 $scaffoldReadme = @'
-# TriadStack SPA - Angular wiring kit
+# TriadStack SPA - Angular project
 
-This folder is a WIRING KIT, not a runnable Angular project. Three more steps turn it into a working app.
+This Angular project uses the TriadStack architectural identity for branding.
 
-## Step 1: Install Node.js and Angular CLI
+## Workflow used to build this
 
-If not already installed:
-- Node.js 20 LTS or newer: https://nodejs.org
-- Angular CLI: npm install -g @angular/cli
+1. Wiped the empty target folder.
+2. Ran ng new in the empty folder:
+     ng new triadstack-spa --routing=true --style=scss --standalone=true --skip-git=true --directory=.
+   Prompts answered: SSR No, zoneless Yes, AI tools None.
+3. Ran wire-triadstack-kts0000005.ps1 -Apply to overlay TriadStack wiring on top.
 
-## Step 2: Bootstrap a fresh Angular project IN THIS FOLDER
+To re-apply branding after pulling new branding source from the vault, just re-run the script. It overwrites wiring files in place and refreshes src/assets/branding/. ng new artifacts are preserved.
 
-From this folder:
-
-  ng new triadstack-spa --routing=true --style=scss --standalone=true --skip-git=true --directory=.
-
-When prompted:
-- Server-Side Rendering: No
-- Static Site Generation: No
-
-## Step 3: Re-apply the wiring
-
-ng new will overwrite some files this script wrote. Re-run this script to restore them:
-
-  C:\ICS-LT-FYXFHG4\KT\clinical\Readiness\_scripts\wire-triadstack-kts0000005.ps1 -Apply
-
-## Step 4: Run
+## Run
 
   npm start
 
 Open http://localhost:4200. The TriadStack header (mark plus wordmark on dark background) shows three nav links. Routed empty content area below.
 
-## What this kit wires
+## What the script wired
 
 - src/styles.scss: imports brand-tokens, baseline body, .kt-button-primary utility, accessibility-aware focus states.
 - src/index.html: favicon, Open Graph meta, theme color.
@@ -338,9 +330,18 @@ Open http://localhost:4200. The TriadStack header (mark plus wordmark on dark ba
 - src/app/shared/header/header.component.{ts,html,scss}: TriadStack toolbar, dark background, brand colors paired with hover states.
 - src/assets/branding/: brand-tokens (CSS, SCSS, JSON), PGB.md doctrine, TriadStack logos and favicon.
 
+## What ng new provided (untouched)
+
+- package.json, package-lock.json, node_modules
+- angular.json, tsconfig*.json
+- src/main.ts, src/app/app.config.ts, src/app/app.routes.ts
+- src/app/app.component.spec.ts
+- public/ folder (Angular 17+) or src/assets/ scaffolding
+- .editorconfig, .gitignore (project-level), README.md (overwritten by this script)
+
 ## Tip: shorten brand-tokens import paths
 
-After ng new, edit angular.json and add to your build target:
+Edit angular.json and add to your build target options:
 
   "stylePreprocessorOptions": {
     "includePaths": ["src/assets/branding"]
@@ -352,15 +353,15 @@ Then any component scss can do:
 
 instead of long relative paths.
 
-## Brand colors
+## Brand colors and PGB doctrine
 
 - Purple #7C3AED (front layer, primary actions, unexpected/usable content)
 - Green #10B981 (middle layer, hover and success, delivered as specified)
 - Blue #3B82F6 (back layer, secondary, exceptional quality)
 
-PGB doctrine in src/assets/branding/PGB.md.
+Full doctrine in src/assets/branding/PGB.md.
 
-## Three viewing modes (auto and manual)
+## Three viewing modes
 
 brand-tokens.css ships with light, dark, and high-contrast modes. Resolution order:
 
@@ -440,9 +441,11 @@ Auto via prefers-color-scheme and prefers-contrast media queries. Manual overrid
 # ============================================================================
 
 if ($mode -eq "scaffold") {
-    Step "Scaffold mode: writing TriadStack Angular wiring kit"
+    Step "Scaffold mode: overlaying TriadStack wiring on existing folder"
+    Note "ng new artifacts (package.json, angular.json, etc.) preserved"
 
-    Wipe-IfExists $angularRoot "existing scaffold folder"
+    # NOTE: NO whole-folder wipe. Only specific wiring files are overwritten.
+    # Copy-TriadStackAssets wipes src\assets\branding\ to clear orphan brand files.
 
     Write-File (Join-Path $angularRoot "src\styles.scss") $stylesScss
     Write-File (Join-Path $angularRoot "src\index.html") $indexHtml
@@ -480,15 +483,28 @@ Step "Final state"
 if ($Apply) {
     Write-Host ""
     if ($mode -eq "scaffold") {
-        Write-Host "TriadStack wiring kit written to:" -ForegroundColor Green
+        Write-Host "TriadStack wiring overlaid on:" -ForegroundColor Green
         Write-Host "  $angularRoot"
         Write-Host ""
+        Write-Host "Verify ng new produced these (must be present for npm start to work):" -ForegroundColor Cyan
+        $required = @("package.json", "angular.json", "src\main.ts", "src\app\app.config.ts", "src\app\app.routes.ts")
+        foreach ($f in $required) {
+            $p = Join-Path $angularRoot $f
+            if (Test-Path $p) {
+                Write-Host "  PRESENT $f" -ForegroundColor Green
+            } else {
+                Write-Host "  MISSING $f" -ForegroundColor Red
+            }
+        }
+        Write-Host ""
         Write-Host "Next:" -ForegroundColor Cyan
-        Write-Host "  1. Read $angularRoot\README.md"
-        Write-Host "  2. cd $angularRoot"
-        Write-Host "  3. ng new triadstack-spa --routing=true --style=scss --standalone=true --skip-git=true --directory=."
-        Write-Host "  4. Re-run this script with -Apply to restore the wiring after ng new"
-        Write-Host "  5. npm start"
+        Write-Host "  cd $angularRoot"
+        Write-Host "  npm start"
+        Write-Host ""
+        Write-Host "If MISSING items appear above, run ng new in the folder first:" -ForegroundColor Yellow
+        Write-Host "  cd $angularRoot"
+        Write-Host "  ng new triadstack-spa --routing=true --style=scss --standalone=true --skip-git=true --directory=."
+        Write-Host "  Then re-run this script."
     } else {
         Write-Host "TriadStack branding applied to:" -ForegroundColor Green
         Write-Host "  $angularRoot\src\assets\branding\"

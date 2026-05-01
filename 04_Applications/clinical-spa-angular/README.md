@@ -1,36 +1,24 @@
-﻿# TriadStack SPA - Angular wiring kit
+﻿# TriadStack SPA - Angular project
 
-This folder is a WIRING KIT, not a runnable Angular project. Three more steps turn it into a working app.
+This Angular project uses the TriadStack architectural identity for branding.
 
-## Step 1: Install Node.js and Angular CLI
+## Workflow used to build this
 
-If not already installed:
-- Node.js 20 LTS or newer: https://nodejs.org
-- Angular CLI: npm install -g @angular/cli
+1. Wiped the empty target folder.
+2. Ran ng new in the empty folder:
+     ng new triadstack-spa --routing=true --style=scss --standalone=true --skip-git=true --directory=.
+   Prompts answered: SSR No, zoneless Yes, AI tools None.
+3. Ran wire-triadstack-kts0000005.ps1 -Apply to overlay TriadStack wiring on top.
 
-## Step 2: Bootstrap a fresh Angular project IN THIS FOLDER
+To re-apply branding after pulling new branding source from the vault, just re-run the script. It overwrites wiring files in place and refreshes src/assets/branding/. ng new artifacts are preserved.
 
-From this folder:
-
-  ng new triadstack-spa --routing=true --style=scss --standalone=true --skip-git=true --directory=.
-
-When prompted:
-- Server-Side Rendering: No
-- Static Site Generation: No
-
-## Step 3: Re-apply the wiring
-
-ng new will overwrite some files this script wrote. Re-run this script to restore them:
-
-  C:\ICS-LT-FYXFHG4\KT\clinical\Readiness\_scripts\wire-triadstack-kts0000005.ps1 -Apply
-
-## Step 4: Run
+## Run
 
   npm start
 
 Open http://localhost:4200. The TriadStack header (mark plus wordmark on dark background) shows three nav links. Routed empty content area below.
 
-## What this kit wires
+## What the script wired
 
 - src/styles.scss: imports brand-tokens, baseline body, .kt-button-primary utility, accessibility-aware focus states.
 - src/index.html: favicon, Open Graph meta, theme color.
@@ -38,9 +26,18 @@ Open http://localhost:4200. The TriadStack header (mark plus wordmark on dark ba
 - src/app/shared/header/header.component.{ts,html,scss}: TriadStack toolbar, dark background, brand colors paired with hover states.
 - src/assets/branding/: brand-tokens (CSS, SCSS, JSON), PGB.md doctrine, TriadStack logos and favicon.
 
+## What ng new provided (untouched)
+
+- package.json, package-lock.json, node_modules
+- angular.json, tsconfig*.json
+- src/main.ts, src/app/app.config.ts, src/app/app.routes.ts
+- src/app/app.component.spec.ts
+- public/ folder (Angular 17+) or src/assets/ scaffolding
+- .editorconfig, .gitignore (project-level), README.md (overwritten by this script)
+
 ## Tip: shorten brand-tokens import paths
 
-After ng new, edit angular.json and add to your build target:
+Edit angular.json and add to your build target options:
 
   "stylePreprocessorOptions": {
     "includePaths": ["src/assets/branding"]
@@ -52,15 +49,15 @@ Then any component scss can do:
 
 instead of long relative paths.
 
-## Brand colors
+## Brand colors and PGB doctrine
 
 - Purple #7C3AED (front layer, primary actions, unexpected/usable content)
 - Green #10B981 (middle layer, hover and success, delivered as specified)
 - Blue #3B82F6 (back layer, secondary, exceptional quality)
 
-PGB doctrine in src/assets/branding/PGB.md.
+Full doctrine in src/assets/branding/PGB.md.
 
-## Three viewing modes (auto and manual)
+## Three viewing modes
 
 brand-tokens.css ships with light, dark, and high-contrast modes. Resolution order:
 
