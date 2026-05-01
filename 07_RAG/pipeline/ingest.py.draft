@@ -1,0 +1,162 @@
+"""
+ingest.py.draft — RAG ingest pipeline skeleton for C:\\RAW\\KT\\
+
+STATUS: DRAFT, not runnable as-is. Treat as a starting commit.
+NEXT:   Pin dependencies in requirements.txt, fill the TODOs, run a smoke test
+        on 01_Prompts and 02_Responses only before pointing at the full vault.
+
+Saga: KTS-0000001
+Author: AI-Architect (Claude, 2026-05-01)
+
+Dependencies (intended):
+    pip install ollama sqlite-vec watchdog python-frontmatter markdown-it-py
+
+Layout:
+    Vault root:        C:\\RAW\\KT\\  (passed via --root)
+    Watched dirs:      00_Inbox, 01_Prompts, 02_Responses, 03_Synthesis, 05_Wiki, 06_Status
+    Vector DB:         07_RAG\\embeddings\\kt.db
+    Manifest log:      07_RAG\\manifest.jsonl  (append-only, hash-chained)
+    Embedding model:   nomic-embed-text via Ollama (768-dim)
+    Chunk size:        ~800 tokens with 100-token overlap; markdown-heading-aware
+
+Design decisions:
+    - Idempotent: SHA-256 of (source_path + content) keys each chunk; skip if unchanged.
+    - Hash-chained manifest: each manifest line includes prev_hash to make tampering obvious.
+    - Front-matter aware: extract saga ID, date, tool from each markdown file's front-matter
+      and attach to every chunk's metadata so retrieval can filter/weight by tool or saga.
+    - Synthesis and Wiki get a +0.2 score boost at retrieval time (hard-coded weights, see
+      query.py when written).
+"""
+from __future__ import annotations
+
+import argparse
+import hashlib
+import json
+import sqlite3
+from dataclasses import dataclass
+from pathlib import Path
+from typing import Iterable
+
+# TODO: import sqlite_vec, ollama, frontmatter, markdown_it once deps are pinned.
+
+# ---------------------------------------------------------------------------
+# Configuration (move to config.yml once stable)
+# ---------------------------------------------------------------------------
+WATCH_DIRS = ["00_Inbox", "01_Prompts", "02_Responses", "03_Synthesis", "05_Wiki", "06_Status"]
+EMBED_MODEL = "nomic-embed-text"
+EMBED_DIM = 768
+CHUNK_TOKEN_TARGET = 800
+CHUNK_TOKEN_OVERLAP = 100
+
+
+# ---------------------------------------------------------------------------
+# Manifest log — append-only, hash-chained
+# ---------------------------------------------------------------------------
+@dataclass
+class ManifestEntry:
+    saga_id: str
+    source_path: str
+    chunk_id: str
+    sha256: str
+    embedded_at: str
+    prev_hash: str
+
+    def to_jsonl(self) -> str:
+        return json.dumps(self.__dict__, separators=(",", ":")) + "\n"
+
+
+def append_manifest(manifest_path: Path, entry: ManifestEntry) -> None:
+    """Append one entry to the manifest, computing prev_hash from the last line."""
+    # TODO: implement — read last line, hash it, set entry.prev_hash, write entry.
+    raise NotImplementedError
+
+
+# ---------------------------------------------------------------------------
+# Front-matter parsing
+# ---------------------------------------------------------------------------
+def parse_front_matter(text: str) -> dict:
+    """Extract saga_id, date, tool from markdown front-matter style:
+        **Saga:** KTS-NNNNNNN
+        **Date:** YYYY-MM-DD
+        **Tool:** claude
+    Falls back to filename parsing if no front-matter found.
+    """
+    # TODO: implement — regex over first ~20 lines.
+    raise NotImplementedError
+
+
+# ---------------------------------------------------------------------------
+# Chunking — markdown-heading-aware
+# ---------------------------------------------------------------------------
+def chunk_markdown(text: str, target_tokens: int = CHUNK_TOKEN_TARGET) -> list[str]:
+    """Split on ## headings; if a section exceeds target_tokens, sub-split."""
+    # TODO: implement — split, measure (use a fast tokenizer estimate, e.g. len(text.split()) * 1.3),
+    #       sub-split by paragraph, then by sentence; emit chunks with overlap.
+    raise NotImplementedError
+
+
+# ---------------------------------------------------------------------------
+# Embedding via Ollama
+# ---------------------------------------------------------------------------
+def embed(text: str) -> list[float]:
+    """Call local Ollama for an embedding. Retries on transient failure."""
+    # TODO: implement using ollama.embeddings(model=EMBED_MODEL, prompt=text).
+    raise NotImplementedError
+
+
+# ---------------------------------------------------------------------------
+# Vector store — sqlite-vec
+# ---------------------------------------------------------------------------
+def open_db(db_path: Path) -> sqlite3.Connection:
+    """Open SQLite, load sqlite-vec, ensure schema."""
+    # TODO: load extension, CREATE TABLE chunks (chunk_id PK, saga_id, source_path, tool, body, sha256),
+    #       CREATE VIRTUAL TABLE chunks_vec USING vec0(embedding float[768]).
+    raise NotImplementedError
+
+
+def upsert_chunk(conn: sqlite3.Connection, chunk_id: str, meta: dict, body: str, vec: list[float]) -> None:
+    # TODO: INSERT OR REPLACE into chunks and chunks_vec.
+    raise NotImplementedError
+
+
+# ---------------------------------------------------------------------------
+# Top-level walk
+# ---------------------------------------------------------------------------
+def iter_markdown_files(vault_root: Path) -> Iterable[Path]:
+    for sub in WATCH_DIRS:
+        for p in (vault_root / sub).rglob("*.md"):
+            yield p
+
+
+def sha256_file(path: Path) -> str:
+    h = hashlib.sha256()
+    h.update(path.read_bytes())
+    return h.hexdigest()
+
+
+def main() -> None:
+    parser = argparse.ArgumentParser(description="Ingest KT vault into local RAG")
+    parser.add_argument("--root", required=True, type=Path, help=r"Vault root, e.g. C:\RAW\KT")
+    parser.add_argument("--rebuild", action="store_true", help="Drop existing chunks and re-embed everything")
+    parser.add_argument("--dry-run", action="store_true", help="Walk and chunk but do not embed or write")
+    args = parser.parse_args()
+
+    db_path = args.root / "07_RAG" / "embeddings" / "kt.db"
+    manifest_path = args.root / "07_RAG" / "manifest.jsonl"
+
+    # TODO: if args.rebuild: db_path.unlink(missing_ok=True); manifest_path.unlink(missing_ok=True)
+    # TODO: conn = open_db(db_path)
+    # TODO: for each file:
+    #         meta = parse_front_matter(file.read_text())
+    #         chunks = chunk_markdown(file.read_text())
+    #         for chunk in chunks:
+    #             chunk_id = sha256(file.path + chunk)
+    #             if exists(conn, chunk_id) and not args.rebuild: continue
+    #             vec = embed(chunk)
+    #             upsert_chunk(conn, chunk_id, meta, chunk, vec)
+    #             append_manifest(manifest_path, ManifestEntry(...))
+    raise NotImplementedError("Fill in the TODOs above before running.")
+
+
+if __name__ == "__main__":
+    main()

@@ -1,0 +1,26 @@
+# Backups produced by consolidate-vault.ps1 and any future cleanup scripts
+*.bak.*/
+
+# RAG vector store and on-disk caches (regenerable, can be large)
+07_RAG/embeddings/*.db
+07_RAG/embeddings/*.db-wal
+07_RAG/embeddings/*.db-shm
+
+# Local Ollama model caches if you ever stage them inside the vault
+07_RAG/models/
+
+# Scratch downloads or partial extracts (defensive: should not appear, but in case)
+Files_*/
+*.zip
+
+# OS / editor noise
+Thumbs.db
+desktop.ini
+.DS_Store
+.vscode/
+.idea/
+
+# Python virtualenv if you build one for ingest.py
+.venv/
+__pycache__/
+*.pyc
