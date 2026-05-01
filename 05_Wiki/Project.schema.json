@@ -1,0 +1,360 @@
+{
+  "schema_name": "Project",
+  "schema_version": "1.0.0",
+  "purpose": "Defines a code deliverable that exercises one or more Courses on real, runnable, demonstrable code. Each Project ends in a working repository with a README, a runnable build, and an interview claim that the repo underwrites.",
+  "fields": {
+    "project_id": {
+      "type": "string",
+      "format": "KT-APP-{7-digit zero-padded}",
+      "example": "KT-APP-0000002",
+      "required": true,
+      "description": "Unique atomic identifier per saga numbering convention."
+    },
+    "name": {
+      "type": "string",
+      "required": true,
+      "description": "Slug-style name. Lowercase, hyphenated. Used as the repo name and folder name under 04_Applications.",
+      "example": "riverhorse-gateway-spring"
+    },
+    "title": {
+      "type": "string",
+      "required": true,
+      "description": "Short human-readable title for README and prep documents.",
+      "example": "RiverHorse Gateway Spring -- Spring Boot 3 BFF translation"
+    },
+    "stack_area": {
+      "type": "string",
+      "required": true,
+      "enum": ["Java 21+", "Spring Boot 3.x", "JSP", "MongoDB", "AWS", "Angular 17+", "cross-stack"],
+      "description": "Primary stack area. Use cross-stack only when the project genuinely spans 3+ areas as its core purpose."
+    },
+    "secondary_stack_areas": {
+      "type": "array",
+      "items_type": "string",
+      "required": false,
+      "description": "Other stack areas exercised but not the primary focus.",
+      "example": ["Spring Boot 3.x", "Angular 17+"]
+    },
+    "scope": {
+      "type": "string",
+      "required": true,
+      "enum": ["spike", "small", "medium", "large"],
+      "description": "spike = throwaway proof of concept (1-3 hours). small = single feature, single repo (1-2 days). medium = multi-feature, may span repos (3-5 days). large = multi-week. Default to small for KT projects."
+    },
+    "type": {
+      "type": "string",
+      "required": true,
+      "enum": ["translation", "extension", "greenfield", "comparison", "infra"],
+      "description": "translation = port an existing C# project to the target stack. extension = build on an existing GitHub repo. greenfield = new project from scratch. comparison = same feature implemented two ways for explicit contrast. infra = deployment, pipeline, or tooling project."
+    },
+    "anchor_repo": {
+      "type": "string",
+      "required": false,
+      "description": "If type is translation or extension: the existing GitHub repo this Project anchors to.",
+      "example": "github.com/jagreen03/BlueSand"
+    },
+    "purpose": {
+      "type": "string",
+      "required": true,
+      "description": "One paragraph stating why this Project exists, what it proves, and what it does not try to prove. Distinguish scope from non-scope explicitly."
+    },
+    "core_features": {
+      "type": "array",
+      "items_type": "string",
+      "min_items": 3,
+      "max_items": 7,
+      "required": true,
+      "description": "Bullet list of features the Project must implement to be considered complete. Each feature must be testable.",
+      "example": [
+        "OAuth 2.0 authorization code flow with PKCE against a public IDP",
+        "HttpOnly + SameSite session cookie issued to the SPA on successful auth",
+        "Authenticated proxy endpoint /api/proxy/{service} that forwards to a downstream resource server with a bearer token",
+        "Error handling for token refresh failure and IDP unavailability",
+        "Logout endpoint that revokes the session cookie and the IDP session"
+      ]
+    },
+    "non_goals": {
+      "type": "array",
+      "items_type": "string",
+      "required": false,
+      "description": "Things this Project explicitly does not try to do. Prevents scope creep and clarifies the interview narrative.",
+      "example": [
+        "Production-grade rate limiting (out of scope; would be added by an upstream API gateway)",
+        "Multi-tenant token isolation (single-tenant assumed for the demo)"
+      ]
+    },
+    "tech_stack": {
+      "type": "object",
+      "required": true,
+      "description": "Concrete technology choices. Pinned versions where they matter.",
+      "fields": {
+        "language": {"type": "string", "example": "Java 21"},
+        "framework": {"type": "string", "example": "Spring Boot 3.2"},
+        "build_tool": {"type": "string", "example": "Maven"},
+        "persistence": {"type": "string", "example": "Spring Data MongoDB 4.x", "required": false},
+        "view_layer": {"type": "string", "example": "JSP / Thymeleaf", "required": false},
+        "auth": {"type": "string", "example": "Spring Security 6 with OAuth 2.0 client", "required": false},
+        "deployment_target": {"type": "string", "example": "AWS ECS Fargate", "required": false},
+        "test_stack": {"type": "string", "example": "JUnit 5, Mockito, Testcontainers"},
+        "other_dependencies": {"type": "array", "items_type": "string", "required": false}
+      }
+    },
+    "linked_courses": {
+      "type": "array",
+      "items_type": "string",
+      "required": true,
+      "description": "course_ids of the Courses that feed this Project. The Project is where Course knowledge gets exercised on real code.",
+      "example": ["KT-COURSE-0000001", "KT-COURSE-0000002"]
+    },
+    "repository": {
+      "type": "object",
+      "required": true,
+      "fields": {
+        "local_path": {"type": "string", "example": "C:\\ICS-LT-FYXFHG4\\KT\\clinical\\Readiness\\04_Applications\\riverhorse-gateway-spring"},
+        "remote_url": {"type": "string", "example": "github.com/jagreen03/riverhorse-gateway-spring", "required": false},
+        "visibility": {"type": "string", "enum": ["private", "public"], "default": "private"},
+        "license": {"type": "string", "example": "MIT", "required": false}
+      }
+    },
+    "deliverables": {
+      "type": "array",
+      "items_type": "object",
+      "required": true,
+      "description": "Concrete, testable outputs the Project must produce. Differs from features in that deliverables include non-code artifacts (README, diagram, write-up).",
+      "item_schema": {
+        "deliverable_id": {"type": "string", "format": "D{2-digit}", "example": "D01"},
+        "type": {"type": "string", "enum": ["code", "config", "test", "docs", "diagram", "write_up", "deployment"]},
+        "description": {"type": "string"},
+        "acceptance_criteria": {"type": "string", "description": "How you know it is done."}
+      }
+    },
+    "milestones": {
+      "type": "array",
+      "items_type": "object",
+      "required": true,
+      "description": "Ordered checkpoints. Each milestone has a date and a state. Milestones are commit-pinned where possible.",
+      "item_schema": {
+        "milestone_id": {"type": "string", "format": "MS{2-digit}", "example": "MS01"},
+        "title": {"type": "string"},
+        "target_date": {"type": "string", "format": "YYYY-MM-DD"},
+        "deliverables_in_scope": {"type": "array", "items_type": "string", "description": "deliverable_ids included in this milestone"},
+        "git_tag": {"type": "string", "example": "v0.1-scaffold", "required": false},
+        "status": {"type": "string", "enum": ["not_started", "in_progress", "complete"]}
+      }
+    },
+    "interview_claim": {
+      "type": "string",
+      "required": true,
+      "description": "The single sentence this Project lets you say in an interview. Specific, falsifiable, defensible by demo or code walkthrough.",
+      "example": "I built a Spring Boot 3 BFF with Spring Security 6, OAuth 2.0 authorization code with PKCE, HttpOnly session cookies, and a downstream proxy endpoint, deployed to AWS ECS Fargate with infrastructure-as-code."
+    },
+    "interview_defense": {
+      "type": "object",
+      "required": true,
+      "description": "Anticipated probe questions an interviewer would ask about this Project, with prepared answers. Three to five entries.",
+      "fields": {
+        "questions": {
+          "type": "array",
+          "items_type": "object",
+          "item_schema": {
+            "question": {"type": "string"},
+            "answer_outline": {"type": "string", "description": "Bullets or a short paragraph. Not a script. The structure of the answer."}
+          }
+        }
+      },
+      "example": {
+        "questions": [
+          {
+            "question": "Why BFF instead of issuing JWTs directly to the SPA?",
+            "answer_outline": "Tokens never reach the browser. HttpOnly cookies eliminate XSS token theft. Refresh logic stays server-side. The downside is a stateful session, which is acceptable for a low-scale clinical app and can be horizontally scaled with a shared session store."
+          },
+          {
+            "question": "Why Spring Security over Keycloak?",
+            "answer_outline": "Spring Security 6 with the oauth2-client starter is sufficient for the BFF role. Keycloak adds an IDP that we do not need to host since the demo uses Google. If the engagement required a self-hosted IDP, Keycloak or Spring Authorization Server would be the next step."
+          }
+        ]
+      }
+    },
+    "status": {
+      "type": "string",
+      "required": true,
+      "enum": ["proposed", "scaffolded", "in_progress", "milestone_complete", "complete", "blocked", "abandoned"],
+      "default": "proposed"
+    },
+    "blockers": {
+      "type": "array",
+      "items_type": "string",
+      "required": false,
+      "description": "Open issues preventing forward progress. Cleared as resolved."
+    },
+    "notes": {
+      "type": "string",
+      "required": false,
+      "description": "Free-form. Architectural decisions deferred, links to forum discussions, todo list."
+    }
+  },
+  "lifecycle": {
+    "states": [
+      "proposed",
+      "scaffolded",
+      "in_progress",
+      "milestone_complete",
+      "complete",
+      "blocked",
+      "abandoned"
+    ],
+    "transitions": {
+      "proposed_to_scaffolded": "Repo is created, build works, first commit pushed. Empty but runnable.",
+      "scaffolded_to_in_progress": "First feature commit lands.",
+      "in_progress_to_milestone_complete": "A milestone is reached. Tag in Git. Update status. Move back to in_progress for the next milestone.",
+      "in_progress_to_complete": "All milestones complete, all deliverables shipped, README explains the interview claim.",
+      "any_to_blocked": "External dependency missing. Add reason in blockers. Resolve and move back.",
+      "any_to_abandoned": "Project no longer relevant. Add reason in notes. Never delete the record."
+    }
+  },
+  "storage": {
+    "definition_location": "C:\\ICS-LT-FYXFHG4\\KT\\clinical\\Readiness\\05_Wiki\\projects\\{project_id}.json",
+    "code_location": "C:\\ICS-LT-FYXFHG4\\KT\\clinical\\Readiness\\04_Applications\\{name}\\",
+    "rationale": "Definition lives in 05_Wiki because the spec is durable knowledge. Code lives in 04_Applications. Each Project repo can become its own GitHub repo when ready."
+  },
+  "example_filled": {
+    "project_id": "KT-APP-0000002",
+    "name": "riverhorse-gateway-spring",
+    "title": "RiverHorse Gateway Spring -- Spring Boot 3 BFF translation",
+    "stack_area": "Spring Boot 3.x",
+    "secondary_stack_areas": ["AWS"],
+    "scope": "small",
+    "type": "translation",
+    "anchor_repo": "private/local .NET 9 ASP.NET Core BFF design (not on GitHub)",
+    "purpose": "Implement the BFF design pattern from a private .NET 9 design as a Spring Boot 3 application. Demonstrates that .NET-to-Spring translation produces equivalent architectural fidelity in OAuth 2.0 and session management. Not in scope: production-grade observability, rate limiting, or multi-tenant token isolation.",
+    "core_features": [
+      "OAuth 2.0 authorization code flow with PKCE against Google as the IDP",
+      "HttpOnly + SameSite=Lax session cookie issued to a static SPA stand-in",
+      "Authenticated proxy endpoint /api/proxy/{service} forwarding to a downstream stub with a bearer token",
+      "Logout endpoint revoking the session cookie and IDP session",
+      "Health and info actuator endpoints for ECS Fargate health checks"
+    ],
+    "non_goals": [
+      "Multi-tenant token isolation",
+      "Production rate limiting (handled upstream by an API gateway in real deployment)",
+      "Persistence of sessions across instances (in-memory acceptable for the demo)"
+    ],
+    "tech_stack": {
+      "language": "Java 21",
+      "framework": "Spring Boot 3.2",
+      "build_tool": "Maven",
+      "auth": "Spring Security 6 with spring-boot-starter-oauth2-client",
+      "deployment_target": "AWS ECS Fargate",
+      "test_stack": "JUnit 5, Mockito, Spring Boot Test slices, Testcontainers for IDP stub"
+    },
+    "linked_courses": ["KT-COURSE-0000001", "KT-COURSE-0000002"],
+    "repository": {
+      "local_path": "C:\\ICS-LT-FYXFHG4\\KT\\clinical\\Readiness\\04_Applications\\riverhorse-gateway-spring",
+      "remote_url": "github.com/jagreen03/riverhorse-gateway-spring",
+      "visibility": "private",
+      "license": "MIT"
+    },
+    "deliverables": [
+      {
+        "deliverable_id": "D01",
+        "type": "code",
+        "description": "Spring Boot 3 scaffolding with embedded Tomcat and a single /hello endpoint.",
+        "acceptance_criteria": "mvn spring-boot:run starts the app on port 8080; curl localhost:8080/hello returns 200."
+      },
+      {
+        "deliverable_id": "D02",
+        "type": "code",
+        "description": "Spring Security with Google OAuth 2.0 client + PKCE.",
+        "acceptance_criteria": "Browsing /hello redirects to Google; on return, authenticated user email visible."
+      },
+      {
+        "deliverable_id": "D03",
+        "type": "code",
+        "description": "Static SPA stand-in served from /static; calls /api/me through HttpOnly cookie.",
+        "acceptance_criteria": "Page shows authenticated user; cookie visible as HttpOnly in dev tools."
+      },
+      {
+        "deliverable_id": "D04",
+        "type": "code",
+        "description": "Proxy endpoint /api/proxy/{service} with WebClient and OAuth2AuthorizedClientManager.",
+        "acceptance_criteria": "Proxy endpoint returns 200 with downstream payload when called from authenticated SPA."
+      },
+      {
+        "deliverable_id": "D05",
+        "type": "deployment",
+        "description": "Dockerfile, ECS Fargate task definition, ECR push, GitHub Actions deploy.",
+        "acceptance_criteria": "git push to main triggers a deploy; the Fargate URL serves the app end-to-end."
+      },
+      {
+        "deliverable_id": "D06",
+        "type": "docs",
+        "description": "README explaining the .NET-to-Spring translation, the BFF pattern, and how to run locally.",
+        "acceptance_criteria": "A senior engineer reading only the README can clone, run, and exercise the auth flow in 15 minutes."
+      },
+      {
+        "deliverable_id": "D07",
+        "type": "diagram",
+        "description": "One sequence diagram of the OAuth 2.0 + PKCE + cookie + proxy flow.",
+        "acceptance_criteria": "Diagram is in README, renders on GitHub, and shows the SPA, BFF, IDP, downstream service, and the cookie boundary."
+      }
+    ],
+    "milestones": [
+      {
+        "milestone_id": "MS01",
+        "title": "Scaffold and run",
+        "target_date": "2026-05-03",
+        "deliverables_in_scope": ["D01"],
+        "git_tag": "v0.1-scaffold",
+        "status": "not_started"
+      },
+      {
+        "milestone_id": "MS02",
+        "title": "OAuth 2.0 + PKCE working end-to-end",
+        "target_date": "2026-05-06",
+        "deliverables_in_scope": ["D02", "D03"],
+        "git_tag": "v0.2-auth",
+        "status": "not_started"
+      },
+      {
+        "milestone_id": "MS03",
+        "title": "Proxy endpoint + downstream stub",
+        "target_date": "2026-05-08",
+        "deliverables_in_scope": ["D04"],
+        "git_tag": "v0.3-proxy",
+        "status": "not_started"
+      },
+      {
+        "milestone_id": "MS04",
+        "title": "Fargate deploy + README + diagram",
+        "target_date": "2026-05-10",
+        "deliverables_in_scope": ["D05", "D06", "D07"],
+        "git_tag": "v1.0",
+        "status": "not_started"
+      }
+    ],
+    "interview_claim": "I built a Spring Boot 3 BFF with Spring Security 6, OAuth 2.0 authorization code with PKCE, HttpOnly session cookies, and a downstream proxy endpoint, deployed to AWS ECS Fargate with infrastructure-as-code. The repository runs end-to-end from a clean clone in under 15 minutes.",
+    "interview_defense": {
+      "questions": [
+        {
+          "question": "Why BFF instead of issuing JWTs directly to the SPA?",
+          "answer_outline": "Tokens never reach the browser; HttpOnly cookies eliminate XSS token theft; refresh logic stays server-side. The trade-off is a stateful session, which is acceptable for a clinical app at expected scale and can be horizontally scaled with a shared session store."
+        },
+        {
+          "question": "Why Spring Security over Keycloak?",
+          "answer_outline": "Spring Security 6 with oauth2-client is sufficient for the BFF role. Keycloak adds a self-hosted IDP we do not need since the demo uses Google. If the engagement required a self-hosted IDP, Keycloak or Spring Authorization Server would be the next step."
+        },
+        {
+          "question": "How does this differ from your .NET 9 BFF design?",
+          "answer_outline": "Architecturally identical. Spring Security takes the role of ASP.NET Core authentication middleware; spring-boot-starter-oauth2-client takes the role of Microsoft.AspNetCore.Authentication.Google. Cookie semantics, PKCE flow, and proxy patterns map one-to-one."
+        },
+        {
+          "question": "What would change for HIPAA-protected data?",
+          "answer_outline": "Audit logging on every authenticated request with user identity and resource accessed; encryption at rest on the session store; tighter cookie lifetimes; explicit OAuth scopes per data class; PHI-safe log redaction. None of these change the BFF pattern itself."
+        }
+      ]
+    },
+    "status": "proposed",
+    "blockers": [],
+    "notes": "Confirm whether the Elevance Clinical engagement requires Spring Authorization Server or Keycloak as the IDP rather than Google. If yes, MS02 expands to include IDP setup."
+  }
+}
