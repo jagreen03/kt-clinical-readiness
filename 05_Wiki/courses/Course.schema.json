@@ -1,0 +1,236 @@
+{
+  "schema_name": "Course",
+  "schema_version": "1.0.0",
+  "purpose": "Defines a structured learning path for one stack area in the KT vault. Each Course is one stack row.",
+  "fields": {
+    "course_id": {
+      "type": "string",
+      "format": "KT-COURSE-{7-digit zero-padded}",
+      "example": "KT-COURSE-0000001",
+      "required": true,
+      "description": "Unique atomic identifier per saga numbering convention."
+    },
+    "title": {
+      "type": "string",
+      "required": true,
+      "description": "Short human-readable name. Should be specific to the outcome, not the technology alone.",
+      "example": "Spring Boot 3 BFF with OAuth 2.0 PKCE"
+    },
+    "stack_area": {
+      "type": "string",
+      "required": true,
+      "enum": ["Java 21+", "Spring Boot 3.x", "JSP", "MongoDB", "AWS", "Angular 17+"],
+      "description": "Which row of the tech stack matrix this Course targets."
+    },
+    "current_rating": {
+      "type": "integer",
+      "range": "1-5",
+      "required": true,
+      "description": "Self-assessed proficiency before starting. 1 = cold, 5 = lead-ready."
+    },
+    "target_rating": {
+      "type": "integer",
+      "range": "1-5",
+      "required": true,
+      "description": "Self-assessed proficiency goal at completion."
+    },
+    "outcome": {
+      "type": "string",
+      "required": true,
+      "description": "One sentence stating what is operationally possible at the end that was not possible at the start. Behavior-based, not knowledge-based.",
+      "example": "Can scaffold and run a Spring Boot 3 BFF with Google OAuth 2.0 PKCE in under 30 minutes from a clean machine."
+    },
+    "prerequisites": {
+      "type": "array",
+      "items_type": "string",
+      "required": false,
+      "description": "Other course_ids or external skills that must be in place first.",
+      "example": ["KT-COURSE-0000001", "JDK 21 installed"]
+    },
+    "modules": {
+      "type": "array",
+      "required": true,
+      "min_items": 3,
+      "max_items": 12,
+      "description": "Ordered list of sittings. Each module is one focused study session.",
+      "item_schema": {
+        "module_id": {
+          "type": "string",
+          "format": "M{2-digit}",
+          "example": "M01"
+        },
+        "title": {
+          "type": "string",
+          "description": "Action-phrased; what gets done in this sitting."
+        },
+        "topics": {
+          "type": "array",
+          "items_type": "string",
+          "description": "Bullet list of concepts covered."
+        },
+        "duration_hours": {
+          "type": "number",
+          "description": "Estimated hours for this sitting."
+        },
+        "source_material": {
+          "type": "array",
+          "items_type": "object",
+          "item_fields": {
+            "type": {
+              "type": "string",
+              "enum": ["linkedin_learning", "official_docs", "book", "blog_post", "youtube", "self_authored", "github_readme"]
+            },
+            "title": "string",
+            "url_or_path": "string",
+            "duration_min": "integer (optional)"
+          }
+        },
+        "hands_on_artifact": {
+          "type": "string",
+          "description": "Concrete deliverable produced by the end of this module. Code file, config snippet, written summary, working demo."
+        },
+        "verification": {
+          "type": "string",
+          "description": "How you confirm the module landed. A passing test, a screenshot, a working endpoint, a written one-paragraph summary in your own voice."
+        }
+      }
+    },
+    "duration_hours_total": {
+      "type": "number",
+      "required": true,
+      "description": "Sum of module durations. Sanity-check against your weekly available study hours."
+    },
+    "start_date": {
+      "type": "string",
+      "format": "YYYY-MM-DD",
+      "required": false,
+      "description": "When the first module begins."
+    },
+    "target_completion_date": {
+      "type": "string",
+      "format": "YYYY-MM-DD",
+      "required": true,
+      "description": "Hard deadline. If duration exceeds available time, scope down or extend."
+    },
+    "status": {
+      "type": "string",
+      "required": true,
+      "enum": ["not_started", "in_progress", "blocked", "complete", "abandoned"],
+      "default": "not_started"
+    },
+    "linked_project_id": {
+      "type": "string",
+      "format": "KT-APP-{7-digit}",
+      "required": false,
+      "description": "The Project this Course feeds into. The Project is where Course knowledge gets exercised on real code."
+    },
+    "notes": {
+      "type": "string",
+      "required": false,
+      "description": "Free-form. Open questions, links to forum posts, things to come back to."
+    }
+  },
+  "lifecycle": {
+    "states": [
+      "not_started",
+      "in_progress",
+      "blocked",
+      "complete",
+      "abandoned"
+    ],
+    "transitions": {
+      "not_started_to_in_progress": "First module starts; set start_date.",
+      "in_progress_to_blocked": "External dependency (paid course not yet purchased, prerequisite skill missing, hardware not available). Add reason in notes.",
+      "blocked_to_in_progress": "Block resolved.",
+      "in_progress_to_complete": "All modules complete, all verifications pass. Update current_rating to target_rating.",
+      "any_to_abandoned": "Course no longer relevant or replaced by a better course. Add reason in notes; never delete the record."
+    }
+  },
+  "storage": {
+    "location": "C:\\ICS-LT-FYXFHG4\\KT\\clinical\\Readiness\\05_Wiki\\courses\\{course_id}.json",
+    "rationale": "Lives in 05_Wiki because Courses are durable knowledge. One file per Course makes them greppable and versionable in Git."
+  },
+  "example_filled": {
+    "course_id": "KT-COURSE-0000002",
+    "title": "Spring Boot 3 BFF with OAuth 2.0 PKCE",
+    "stack_area": "Spring Boot 3.x",
+    "current_rating": 2,
+    "target_rating": 4,
+    "outcome": "Can scaffold a Spring Boot 3 BFF that authenticates a user via Google OAuth 2.0 with PKCE, issues an HttpOnly session cookie to the SPA, and proxies authenticated calls to a downstream resource server in under 30 minutes from a clean machine.",
+    "prerequisites": ["KT-COURSE-0000001", "JDK 21 installed", "Maven or Gradle"],
+    "modules": [
+      {
+        "module_id": "M01",
+        "title": "Scaffold and run a minimal Spring Boot 3 web app",
+        "topics": ["start.spring.io", "Maven vs Gradle for this project", "@SpringBootApplication", "embedded Tomcat", "actuator endpoints"],
+        "duration_hours": 1.5,
+        "source_material": [
+          {"type": "linkedin_learning", "title": "Spring Boot 3 Essential Training", "url_or_path": "TBD", "duration_min": 90}
+        ],
+        "hands_on_artifact": "A running Spring Boot 3 app exposing GET /hello returning 200.",
+        "verification": "curl localhost:8080/hello returns the expected string. Screenshot in module log."
+      },
+      {
+        "module_id": "M02",
+        "title": "Add Spring Security 6 with form login as a baseline",
+        "topics": ["SecurityFilterChain", "UserDetailsService", "PasswordEncoder", "default login page"],
+        "duration_hours": 2,
+        "source_material": [
+          {"type": "official_docs", "title": "Spring Security Reference", "url_or_path": "https://docs.spring.io/spring-security/reference/"}
+        ],
+        "hands_on_artifact": "Same app now requires login before /hello returns 200.",
+        "verification": "anonymous request returns 302 to /login; authenticated request returns 200."
+      },
+      {
+        "module_id": "M03",
+        "title": "Replace form login with OAuth 2.0 client (Google)",
+        "topics": ["spring-boot-starter-oauth2-client", "ClientRegistration", "redirect URI", "scopes"],
+        "duration_hours": 2.5,
+        "source_material": [
+          {"type": "linkedin_learning", "title": "Spring Boot 3: Security and OAuth2", "url_or_path": "TBD", "duration_min": 150}
+        ],
+        "hands_on_artifact": "App redirects unauthenticated users to Google; on return, /hello shows the authenticated user's email.",
+        "verification": "browser flow works end-to-end. Capture the redirect chain in a written summary."
+      },
+      {
+        "module_id": "M04",
+        "title": "Enable PKCE explicitly",
+        "topics": ["S256 code challenge", "client_authentication_method=none", "why PKCE for public clients"],
+        "duration_hours": 1.5,
+        "source_material": [
+          {"type": "official_docs", "title": "Spring Security OAuth2 Client PKCE", "url_or_path": "https://docs.spring.io/spring-security/reference/servlet/oauth2/client/authorization-grants.html#oauth2Client-auth-code-pkce"}
+        ],
+        "hands_on_artifact": "PKCE-enabled config; observable code_challenge in the authorization request.",
+        "verification": "browser dev tools show code_challenge and code_challenge_method=S256 in the authorize URL."
+      },
+      {
+        "module_id": "M05",
+        "title": "Issue session cookie to a sample SPA caller",
+        "topics": ["HttpOnly + SameSite=Lax cookie", "CSRF for cookie-based BFF", "a tiny static index.html as the SPA stand-in"],
+        "duration_hours": 2,
+        "source_material": [
+          {"type": "blog_post", "title": "BFF pattern with Spring Boot", "url_or_path": "TBD"}
+        ],
+        "hands_on_artifact": "Static HTML page calling /api/me that returns the authenticated user.",
+        "verification": "fetch from the static page works; cookie visible in dev tools as HttpOnly."
+      },
+      {
+        "module_id": "M06",
+        "title": "Proxy a downstream call through the BFF",
+        "topics": ["WebClient with bearer token", "OAuth2AuthorizedClientManager", "downstream service stub"],
+        "duration_hours": 2.5,
+        "source_material": [
+          {"type": "official_docs", "title": "Spring Security WebClient OAuth2", "url_or_path": "https://docs.spring.io/spring-security/reference/servlet/oauth2/client/index.html"}
+        ],
+        "hands_on_artifact": "BFF endpoint /api/proxy/data calls a stub resource server and returns its JSON to the SPA.",
+        "verification": "end-to-end: SPA calls BFF, BFF calls downstream with the right Authorization header, response reaches the SPA."
+      }
+    ],
+    "duration_hours_total": 12,
+    "start_date": "2026-05-02",
+    "target_completion_date": "2026-05-09",
+    "status": "not_started",
+    "linked_project_id": "KT-APP-0000002",
+    "notes": "M04 PKCE module may already be covered automatically by Spring Security 6 defaults; verify whether explicit config is still required or if it is implicit for public clients."
+  }
+}
