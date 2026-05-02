@@ -3,11 +3,10 @@ import { RouterLink, RouterLinkActive } from "@angular/router";
 
 @Component({
   selector: "app-header",
-  standalone: true,
   imports: [RouterLink, RouterLinkActive],
-  templateUrl: "./header.component.html",
-  styleUrls: ["./header.component.scss"]
+  templateUrl: "./header.html",
+  styleUrl: "./header.scss"
 })
-export class HeaderComponent {
+export class Header {
   title = "TriadStack";
 }
