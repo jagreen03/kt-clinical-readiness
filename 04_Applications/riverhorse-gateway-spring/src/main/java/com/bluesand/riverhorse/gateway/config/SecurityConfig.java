@@ -15,6 +15,7 @@ import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 import org.springframework.security.web.csrf.CsrfTokenRequestAttributeHandler;
 import org.springframework.session.web.http.CookieSerializer;
 import org.springframework.session.web.http.DefaultCookieSerializer;
+import jakarta.servlet.http.HttpServletResponse;
 
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
@@ -35,6 +36,11 @@ public class SecurityConfig {
                 .authorizationEndpoint(endpoint -> endpoint
                     .authorizationRequestResolver(pkceResolver)
                 )
+                .failureHandler((request, response, exception) -> {
+                    response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+                    response.setContentType("application/json");
+                    response.getWriter().write("{\"error\":\"authentication_failed\"}");
+                })
             )
             .csrf(csrf -> csrf
                 .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
