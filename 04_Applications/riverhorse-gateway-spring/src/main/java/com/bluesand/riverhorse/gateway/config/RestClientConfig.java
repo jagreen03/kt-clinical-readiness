@@ -13,11 +13,13 @@ import java.time.Duration;
 public class RestClientConfig {
 
     @Bean
-    public RestClient proxyRestClient(RestClient.Builder builder) {
+    public RestClient proxyRestClient() {
         SimpleClientHttpRequestFactory requestFactory = new SimpleClientHttpRequestFactory();
         requestFactory.setConnectTimeout((int) Duration.ofSeconds(2).toMillis());
         requestFactory.setReadTimeout((int) Duration.ofSeconds(5).toMillis());
         
-        return builder.requestFactory(requestFactory).build();
+        return RestClient.builder()
+            .requestFactory(requestFactory)
+            .build();
     }
 }
