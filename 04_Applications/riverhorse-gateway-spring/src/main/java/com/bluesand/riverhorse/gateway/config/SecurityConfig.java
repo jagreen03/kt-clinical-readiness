@@ -9,7 +9,7 @@ import org.springframework.security.crypto.keygen.StringKeyGenerator;
 import org.springframework.security.oauth2.client.registration.ClientRegistrationRepository;
 import org.springframework.security.oauth2.client.web.DefaultOAuth2AuthorizationRequestResolver;
 import org.springframework.security.oauth2.client.web.OAuth2AuthorizationRequestResolver;
-import org.springframework.security.oauth2.core.endpoint.OAuth2ParameterNames;
+import org.springframework.security.oauth2.core.endpoint.PkceParameterNames;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 import org.springframework.security.web.csrf.CsrfTokenRequestAttributeHandler;
@@ -69,12 +69,12 @@ public class SecurityConfig {
                 String codeChallenge = Base64.getUrlEncoder().withoutPadding().encodeToString(digest);
 
                 customizer.additionalParameters(params -> {
-                    params.put(OAuth2ParameterNames.CODE_CHALLENGE, codeChallenge);
-                    params.put(OAuth2ParameterNames.CODE_CHALLENGE_METHOD, "S256");
+                    params.put(PkceParameterNames.CODE_CHALLENGE, codeChallenge);
+                    params.put(PkceParameterNames.CODE_CHALLENGE_METHOD, "S256");
                 });
 
                 customizer.attributes(attrs -> 
-                    attrs.put(OAuth2ParameterNames.CODE_VERIFIER, codeVerifier)
+                    attrs.put(PkceParameterNames.CODE_VERIFIER, codeVerifier)
                 );
             } catch (NoSuchAlgorithmException e) {
                 throw new IllegalStateException("Failed to initialize PKCE challenge", e);
