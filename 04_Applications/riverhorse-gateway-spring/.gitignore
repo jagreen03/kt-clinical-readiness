@@ -38,3 +38,6 @@ out/
 # OS specific
 .DS_Store
 Thumbs.db
+
+# Spring Initializr Help
+HELP.md
