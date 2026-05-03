@@ -48,7 +48,7 @@ spring:
           google:
             # Using issuer-uri delegates endpoint discovery to Google's .well-known/openid-configuration.
             # Superior to hardcoding authorization/token endpoints manually.
-            issuer-uri: [https://accounts.google.com](https://accounts.google.com)
+            issuer-uri: https://accounts.google.com
             user-name-attribute: sub
 
 management:
