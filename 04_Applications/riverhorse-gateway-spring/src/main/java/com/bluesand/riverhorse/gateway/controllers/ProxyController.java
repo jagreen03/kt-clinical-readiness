@@ -39,8 +39,12 @@ public class ProxyController {
         "te", "trailer", "transfer-encoding", "upgrade"
     );
 
+    private static final Set<String> INBOUND_BLOCK = Set.of(
+        "cookie", "authorization"
+    );
+
     private static final Set<String> SUPPRESS = Set.of(
-        "content-length" 
+        "content-length", "server", "x-powered-by"
     );
 
     private final RestClient restClient;
@@ -84,7 +88,8 @@ public class ProxyController {
             .uri(targetUrl)
             .headers(headers -> {
                 Collections.list(request.getHeaderNames()).forEach(headerName -> {
-                    if (!HOP_BY_HOP.contains(headerName.toLowerCase())) {
+                    String lowerName = headerName.toLowerCase();
+                    if (!HOP_BY_HOP.contains(lowerName) && !INBOUND_BLOCK.contains(lowerName)) {
                         headers.addAll(headerName, Collections.list(request.getHeaders(headerName)));
                     }
                 });
