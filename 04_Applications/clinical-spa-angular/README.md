@@ -1,43 +1,39 @@
-﻿# TriadStack SPA - Angular project
+﻿# KT Clinical SPA (TriadStack)
 
-This Angular project uses the TriadStack architectural identity for branding.
+TriadStack-branded Single Page Application (SPA) providing the frontend interface for KT Clinical Readiness. This Angular application integrates directly with a Spring Boot Backend-For-Frontend (BFF) to handle Google OAuth 2.0 authentication, session management, and secure proxying of downstream microservice requests.
 
-## Build sequence
+## Tech Stack
+* Angular 19+ (Standalone Components)
+* TypeScript
+* Zoneless Change Detection
 
-1. Wipe the folder if it has stale state.
-2. Run ng new in the empty folder:
-     ng new triadstack-spa --routing=true --style=scss --standalone=true --skip-git=true --directory=.
-   Prompts: SSR No, zoneless Yes, AI tools None.
-3. Run wire-triadstack-kts0000005.ps1 -Apply to overlay TriadStack wiring.
+## Required Environment Variables
+No environment variables are required directly by the SPA. All runtime configuration (OAuth client secrets, internal API keys) is managed by the BFF. See the `riverhorse-gateway-spring` README for backend environment requirements.
 
-To re-apply branding after pulling new branding source from the vault, just re-run the script. It overwrites wiring files in place and refreshes src/assets/branding/. ng new artifacts (package.json, angular.json, node_modules, etc.) are preserved.
+## Local Development Workflow
+1. Start the BFF on port `8080` (ensure BFF environment variables are set).
+2. Start the SPA via Angular CLI: `ng serve --proxy-config proxy.conf.json`
+3. The SPA runs on `http://localhost:4200` and transparently proxies `/api`, `/auth`, `/oauth2`, and `/login` traffic to the BFF, simulating a same-origin production environment to bypass local CORS and CSRF restrictions.
 
-## Run
+## Build & Run Commands
+* **Compile**: `ng build`
+* **Test**: `ng test`
+* **Run Dev**: `ng serve --proxy-config proxy.conf.json`
+* **Production Build**: `ng build --configuration production`
 
-  npm start
+## Architectural Notes
+* **Cookie-Based Auth**: No JWTs are stored in local storage or memory. Session (`BFF_SESSION`) and CSRF (`XSRF-TOKEN`) cookies are managed entirely by the BFF and the browser.
+* **Protected Routes**: `/`, `/dashboard`, and `/proxy-demo` are available. The `authGuard` enforces authentication on protected routes.
+* **Interceptors**: 
+  * `credentials`: Appends `withCredentials: true` to ensure cookies flow to the BFF.
+  * `csrf`: Appends the `X-XSRF-TOKEN` header on mutating requests (defensive cross-origin fallback).
+  * `error`: Centralized handling for 401 (redirects to public landing), 403, and network failures.
 
-Open http://localhost:4200. The TriadStack header (mark plus wordmark on dark background) shows three nav links. Routed empty content area below.
+## Saga Record & Decisions
+The architectural decisions, threat models, and review artifacts that shaped this integration are stored in the parent vault at `03_Synthesis/`. Refer to saga `KTS-0000008`.
 
-## What the script wired
-
-- src/styles.scss: brand-tokens import, baseline body, .kt-button-primary utility, accessibility-aware focus states.
-- src/index.html: TriadStack title, favicon, Open Graph meta, theme color.
-- src/app/app.ts and app.html: standalone root component with header + router outlet.
-- src/app/shared/header/header.{ts,html,scss}: TriadStack toolbar, dark background, brand colors paired with hover states.
-- src/assets/branding/: brand-tokens (CSS, SCSS, JSON), PGB.md doctrine, TriadStack logos and favicon.
-
-## Brand colors (PGB doctrine)
-
-- Purple #7C3AED (front layer, primary actions, unexpected/usable content)
-- Green #10B981 (middle layer, hover and success, delivered as specified)
-- Blue #3B82F6 (back layer, secondary, exceptional quality)
-
-Full doctrine in src/assets/branding/PGB.md.
-
-## Three viewing modes
-
-brand-tokens.css ships with light, dark, and high-contrast modes:
-
-1. Manual: html element data-theme attribute.
-2. Auto: prefers-contrast: more then prefers-color-scheme: dark.
-3. Default: light.
+## Known Limitations & Deferred Items
+* **CSRF Interceptor**: The custom `csrfInterceptor` is currently a defensive duplicate of the `proxy.conf.json` same-origin behavior. It may be removed once production deployment topologies are finalized and guaranteed same-origin.
+* **Client Hydration**: `provideClientHydration` is enabled but currently inactive (no SSR). Scheduled for removal or correct implementation in a future technical debt saga.
+* **Testing**: No component test files (`.spec.ts`) are currently emitted. Scheduled for a future polish pass.
+* **Placeholders**: `HomeComponent` and `DashboardComponent` are inline placeholders in `app.routes.ts` pending real feature implementations.
