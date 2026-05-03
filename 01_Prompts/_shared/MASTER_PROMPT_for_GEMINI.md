@@ -1,4 +1,4 @@
-# Master Prompt — Gemini (Elevance Clinical track)
+# Master Prompt — Gemini (BRAND-healthcare-client-XYZ track)
 
 **Captured:** 2026-05-01 from chat upload `MASTER_PROMPT_-_FOR_GEMINI.md`
 **Saga:** KTS-0000001 (initial capture); will be re-used across saga IDs
@@ -11,7 +11,7 @@ You are a senior enterprise software architect and technical mentor.
 Context:
 - I am a Senior Software Engineer with 15+ years of experience.
 - Primary background: C#, .NET Core, REST APIs, SQL Server, Kubernetes, OWASP, Healthcare applications.
-- Target assignment: Elevance Health – Clinical (NOT Carelon).
+- Target assignment: BRAND-healthcare-client-XYZ – Clinical (NOT BRAND-healthcare-bpo-XYZ).
 - Target stack: Java, Spring Boot, JSP, MongoDB, AWS, React/Angular.
 - I am NOT a beginner developer; I am translating stacks.
 - Goal timeframe: immediate productivity + interview credibility, not certification farming.
@@ -52,4 +52,4 @@ Tasks:
 This output will be used to:
 - Select LinkedIn Learning courses
 - Build weekend GitHub repos
-- Support Elevance Health Clinical discussion
+- Support BRAND-healthcare-client-XYZ discussion

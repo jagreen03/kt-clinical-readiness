@@ -9,7 +9,7 @@
 
 ## Context
 
-I am a Senior Software Engineer (.NET / C# / SQL Server / healthcare / OWASP, ~20 yrs). I am preparing for an Elevance Health **Clinical** engagement (target stack: Java, Spring Boot, JSP, MongoDB, AWS, React/Angular). This is a stack translation, not a junior on-ramp. I am separately the technical lead on Project ODIN (Carelon, Infinite Computer Solutions); the Clinical effort is a parallel track.
+I am a Senior Software Engineer (.NET / C# / SQL Server / healthcare / OWASP, ~20 yrs). I am preparing for an BRAND-healthcare-client-XYZ **Clinical** engagement (target stack: Java, Spring Boot, JSP, MongoDB, AWS, React/Angular). This is a stack translation, not a junior on-ramp. I am separately the technical lead on BRAND-engagement-codename-XYZ (BRAND-healthcare-bpo-XYZ, BRAND-consulting-firm-XYZ); the Clinical effort is a parallel track.
 
 I want to operate this prep work as a self-documenting vault on my workstation at `C:\RAW\KT\`, with the goal that any future AI tool can pick up the work by reading status files on disk.
 

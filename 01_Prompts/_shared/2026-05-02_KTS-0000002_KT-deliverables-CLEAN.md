@@ -2,7 +2,7 @@
 
 Both Claude and Gemini, this turn produces the actual master-prompt deliverables that KTS-0000001 deferred: LinkedIn Learning courses, GitHub project ideas, and interview talking points. Use the master prompts at `01_Prompts/_shared/MASTER_PROMPT_for_CLAUDE.md` and `01_Prompts/_shared/MASTER_PROMPT_for_GEMINI.md` as your authoritative ask. The three context blocks below ground the work in real artifacts instead of inferred ones.
 
-### Block 1: Sanitized stack constraints from Elevance Clinical materials
+### Block 1: Sanitized stack constraints from BRAND-healthcare-client-XYZ materials
 
 [PASTE PUBLIC-SHAPED TECHNICAL THEMES HERE]
 

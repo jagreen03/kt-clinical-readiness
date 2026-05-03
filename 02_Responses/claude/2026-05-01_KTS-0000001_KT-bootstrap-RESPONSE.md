@@ -30,7 +30,7 @@ C:\RAW\KT\
 └── 99_Archive\                (move-only, never delete)
 ```
 
-Why this shape: it mirrors your existing `C:\ODIN` Obsidian conventions (numbered tier prefixes, inbox-first, archive-last) and adds explicit `claude/` vs `gemini/` subfolders so parallel-tool consultation produces clean, comparable artifacts. The `03_Synthesis/` step is the human-authored merge — that step is what an interviewer would actually see, and what your RAG should weight highest at retrieval time.
+Why this shape: it mirrors your existing `C:\BRAND-engagement-codename-XYZ` Obsidian conventions (numbered tier prefixes, inbox-first, archive-last) and adds explicit `claude/` vs `gemini/` subfolders so parallel-tool consultation produces clean, comparable artifacts. The `03_Synthesis/` step is the human-authored merge — that step is what an interviewer would actually see, and what your RAG should weight highest at retrieval time.
 
 ## 2. Saga numbering
 
@@ -85,7 +85,7 @@ Budget: $6K. Workload: KT RAG today, 70B-class inference and Java/Spring + Angul
 - **Threadripper 7960X (24c) + ASUS Pro WS TRX50-SAGE WIFI + 4×32GB DDR5 ECC + RTX 5090 32GB GDDR7 + Samsung 990 Pro 4TB** (~$5.9K) — **top pick**; your stated 4-channel intuition is correct, full CUDA, 128GB ECC, RTX 5090 lands you native 70B Q4 inference today; same workstation hosts Java + Angular dev cleanly.
 - **Threadripper PRO 7965WX + WRX90** ($8K+ before GPU) — 8 channels but blows budget; **anti-recommend per your stated constraint**.
 - **Xeon W7-2495X (24c) + ASUS Pro WS W790-ACE + 8×16GB DDR5 ECC + RTX 5090** (~$6.5K) — 8-channel ECC if you really want it, but Xeon-W premium pushes you 8% over budget for marginal gain over TR 7960X for your workload; **second choice**.
-- **Used EPYC 7543 + H12SSL-CT + dual RTX PRO 4500 Blackwell** (~$5K, your existing ODIN spec) — earmarked for ODIN; **anti-recommend mixing tracks**.
+- **Used EPYC 7543 + H12SSL-CT + dual RTX PRO 4500 Blackwell** (~$5K, your existing BRAND-engagement-codename-XYZ spec) — earmarked for BRAND-engagement-codename-XYZ; **anti-recommend mixing tracks**.
 
 **Call:** Threadripper 7960X build. Reasoning lives at `08_HW/HW-BLD-002_KT-workstation.md`.
 
@@ -95,7 +95,7 @@ Direct fetch of `https://github.com/jagreen03` failed (HTTP error from my fetch 
 
 **What I'd expect to see and would map against:**
 - A `BlueSand.RiverHorse.Gateway` repo or similar — your .NET 9 ASP.NET Core MVC BFF with Google OAuth 2.0 + PKCE. The Java/Spring translation target is a Spring Boot BFF using Spring Authorization Server (or Keycloak) + WebClient + an Angular SPA on the front. This is the natural OAuth 2.0 expansion.
-- An ODIN P0 stack repo or `OdinP0Stack.cs`-equivalent.
+- An BRAND-engagement-codename-XYZ P0 stack repo or `OdinP0Stack.cs`-equivalent.
 - An OpenLocate / AudioJeller artifact set.
 - Any JSP scaffolding (which I'd guess is not yet present — JSP is the new-stack item, not a legacy you carry).
 
@@ -116,6 +116,6 @@ This is a recommendation, not a deliverable — drop or reorder freely.
 
 ## Known gaps
 
-- The three Office attachments (`Elevance_Clinical_KT_Activity.docx`, `..._Preparation.pptx`, `..._TechStack_Activity.xlsx`) did not transfer — re-upload next turn so I can incorporate the official Carelon-vs-Elevance stack delta and any required course list.
+- The three Office attachments (`BRAND-healthcare-client-XYZ_Clinical_KT_Activity.docx`, `..._Preparation.pptx`, `..._TechStack_Activity.xlsx`) did not transfer — re-upload next turn so I can incorporate the official BRAND-healthcare-bpo-XYZ-vs-BRAND-healthcare-client-XYZ stack delta and any required course list.
 - GitHub fetch did not resolve — provide a working URL or paste contents next turn.
 - LinkedIn Learning course recommendations and GitHub project plans are deferred to the **second saga (KTS-0000002)** — that's where the master prompts (Claude/Gemini) get used in earnest, after the vault is on disk.

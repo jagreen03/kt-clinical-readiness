@@ -1,4 +1,4 @@
-﻿# Triad Roles
+# Triad Roles
 
 **Path:** 05_Wiki/Triad/roles.md
 **Authored:** 2026-05-02 (KTS-0000006)
@@ -41,7 +41,7 @@ The Triad is the human-led, two-AI collaboration model on the KT Clinical Readin
 
 **Catalyst-002 (planned)**
 - Occupant: local AI runner, vendor-agnostic ILlmClient (per Cyclopter design)
-- Trigger: ODIN workstation online (~September 2026), Cyclopter Runners band live
+- Trigger: BRAND-engagement-codename-XYZ workstation online (~September 2026), Cyclopter Runners band live
 - Effect: filesystem load off the Pilot. Catalyst-001 retires.
 - Pilot stays human, permanently.
 

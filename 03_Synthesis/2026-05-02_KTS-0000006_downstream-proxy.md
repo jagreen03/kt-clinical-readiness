@@ -3,7 +3,7 @@
 ## 1. Token Strategy Decision
 * Decision: Service-account credential with user claim header propagation (Option A).
 * Rationale: For an interview-defense portfolio, this strikes the balance between demonstrable zero-trust mechanics and manageable infrastructure. The BFF acts as a confidential client. It strips the external Google context, authenticates itself to the downstream service using a static internal API key (or client credentials token), and asserts the user's identity via X-User-Id headers.
-* Carelon-Scale Reality: At enterprise scale (healthcare/fintech), this transitions to Token Exchange (RFC 8693) backed by mTLS. The BFF would swap the external Google token for an internal, short-lived, audience-restricted JWT signed by an internal authorization server (Ping/Okta). Attempting to mock a full internal IdP in this portfolio piece dilutes the focus on the BFF itself.
+* BRAND-healthcare-bpo-XYZ-Scale Reality: At enterprise scale (healthcare/fintech), this transitions to Token Exchange (RFC 8693) backed by mTLS. The BFF would swap the external Google token for an internal, short-lived, audience-restricted JWT signed by an internal authorization server (Ping/Okta). Attempting to mock a full internal IdP in this portfolio piece dilutes the focus on the BFF itself.
 
 ## 2. Spring Cloud Gateway MVC vs. Hand-Rolled @RestController
 * Decision: Hand-rolled @RestController.
@@ -30,7 +30,7 @@
   * X-Correlation-ID (Generated if absent, passed through if present, for distributed tracing).
 
 ## 6. Resilience Minimums
-* Timeouts: Must be explicitly configured on the RestClient underlying request factory. Hard defaults: 2 seconds connect timeout, 5 seconds read timeout. Infinite hanging is the primary cause of BFF thread pool exhaustion.
+* Timeouts: Must be explicitly configured on the RestClient underlying request factory. Hard defaults: 2 seconds connect timeout, 5 seconds read timeout. BRAND-consulting-firm-XYZ hanging is the primary cause of BFF thread pool exhaustion.
 * Circuit Breakers: Resilience4j @CircuitBreaker and @Bulkhead annotations belong directly on the service layer class wrapping the RestClient execution, isolating failures per {serviceId}.
 
 ## 7. Error Handling

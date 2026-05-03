@@ -31,8 +31,8 @@
 
 - `MASTER_PROMPT_-_FOR_CLAUDE.md` — present in chat context, copied to `01_Prompts/_shared/`
 - `MASTER_PROMPT_-_FOR_GEMINI.md` — present in chat context, copied to `01_Prompts/_shared/`
-- `Elevance_Clinical_KT_Activity.docx` — **referenced but did not transfer** (empty in upload directory)
-- `Elevance_Clinical_Preparation.pptx` — **referenced but did not transfer**
-- `Elevance_Clinical_TechStack_Activity.xlsx` — **referenced but did not transfer**
+- `BRAND-healthcare-client-XYZ_Clinical_KT_Activity.docx` — **referenced but did not transfer** (empty in upload directory)
+- `BRAND-healthcare-client-XYZ_Clinical_Preparation.pptx` — **referenced but did not transfer**
+- `BRAND-healthcare-client-XYZ_Clinical_TechStack_Activity.xlsx` — **referenced but did not transfer**
 
 The three Office files are listed as a known gap in `06_Status/OBJECTIVES.md` — re-upload on next turn.

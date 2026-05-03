@@ -1,4 +1,4 @@
-﻿# HISTORY (append-only)
+# HISTORY (append-only)
 
 > Append-only chronological log. Newest at the bottom. Each entry: ISO timestamp, saga ID, one-line summary, paths touched.
 >
@@ -12,7 +12,7 @@ KT vault skeleton authored by Claude (Opus 4.7). Folder tree created under <mach
 
 Artifacts written: README.md, 00_Inbox/bootstrap-prompt-RAW.md, 01_Prompts/_shared/{KT-bootstrap-CLEAN, MASTER_PROMPT_for_CLAUDE, MASTER_PROMPT_for_GEMINI}.md, 02_Responses/claude/KT-bootstrap-RESPONSE.md, 05_Wiki/{folder-structure, saga-numbering, stack-map-dotnet-to-java}.md, 06_Status/{STATUS, HISTORY, OBJECTIVES}.md, 07_RAG/README.md, 07_RAG/pipeline/ingest.py.draft, 08_HW/HW-BLD-002_KT-workstation.md.
 
-Gaps logged for next turn: GitHub fetch of jagreen03 failed (Claude tool restriction); three Elevance Office attachments did not transfer.
+Gaps logged for next turn: GitHub fetch of jagreen03 failed (Claude tool restriction); three BRAND-healthcare-client-XYZ Office attachments did not transfer.
 
 ## 2026-05-01T17:00Z - KTS-0000001 - Gemini response received, synthesis seeded
 

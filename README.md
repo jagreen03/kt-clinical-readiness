@@ -1,10 +1,10 @@
-# KT - Elevance Clinical Knowledge Transfer Vault
+# KT - BRAND-healthcare-client-XYZ Knowledge Transfer Vault
 
 **Root path (Windows):** `C:\<machine-namespace>\KT\clinical\Readiness\`
 This machine: `C:\<work-laptop-hostname>\KT\clinical\Readiness\`
 
 **Owner:** John Green
-**Purpose:** Stack-translation effort for Elevance Health Clinical engagement (.NET to Java/Spring Boot/JSP/MongoDB/AWS/Angular). Distinct from Project ODIN (Carelon/Infinite). The `<machine-namespace>` prefix is John's machine-disambiguation classification (so synced files are traceable to their origin machine). It is NOT a corporate-policy boundary. Both work and personal laptops are under John's chain of custody.
+**Purpose:** Stack-translation effort for BRAND-healthcare-client-XYZ engagement (.NET to Java/Spring Boot/JSP/MongoDB/AWS/Angular). Distinct from BRAND-engagement-codename-XYZ (BRAND-healthcare-bpo-XYZ/BRAND-consulting-firm-XYZ). The `<machine-namespace>` prefix is John's machine-disambiguation classification (so synced files are traceable to their origin machine). It is NOT a corporate-policy boundary. Both work and personal laptops are under John's chain of custody.
 
 ## Folder Map
 
@@ -21,7 +21,7 @@ This machine: `C:\<work-laptop-hostname>\KT\clinical\Readiness\`
 | `05_Wiki` | Persistent durable knowledge: taxonomy, mappings, glossary | Living docs |
 | `06_Status` | Living state: STATUS.md, HISTORY.md, OBJECTIVES.md | Always read first by any AI agent |
 | `07_RAG` | Local AI knowledge base: corpus, embeddings, ingest pipeline | Auto-maintained by ingest script |
-| `08_HW` | Hardware decisions for THIS workstation build (HW-BLD-002, distinct from ODIN HW-BLD-001) | Versioned |
+| `08_HW` | Hardware decisions for THIS workstation build (HW-BLD-002, distinct from BRAND-engagement-codename-XYZ HW-BLD-001) | Versioned |
 | `99_Archive` | Superseded artifacts: never deleted | Move-only |
 
 ## Source-of-Truth Rule

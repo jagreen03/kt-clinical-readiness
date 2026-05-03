@@ -1,4 +1,4 @@
-﻿# KTS-0000006: Happy-Path Trace - Claude Review (A-#3)
+# KTS-0000006: Happy-Path Trace - Claude Review (A-#3)
 
 **Path:** 03_Synthesis/2026-05-02_KTS-0000006_happy-path-trace-review.md
 **Reviewer:** Claude
@@ -41,7 +41,7 @@ Resolution: the trace should either (a) reflect that SameSite is unset by defaul
 
 ## Forward Note (not a gap)
 
-The trace stops at step 9 with a static `/api/me` response. The downstream proxy flow (A-#4) will introduce token forwarding to internal services, which is where the BFF pattern earns its name. The id_token / access_token distinction matters there: id_token is identity (claims about who), access_token is authorization (what they can call). For Carelon downstream services, neither Google token will be the credential - the BFF will likely exchange for an internal token via a separate authorization server. Defer to A-#4.
+The trace stops at step 9 with a static `/api/me` response. The downstream proxy flow (A-#4) will introduce token forwarding to internal services, which is where the BFF pattern earns its name. The id_token / access_token distinction matters there: id_token is identity (claims about who), access_token is authorization (what they can call). For BRAND-healthcare-bpo-XYZ downstream services, neither Google token will be the credential - the BFF will likely exchange for an internal token via a separate authorization server. Defer to A-#4.
 
 ## Disposition
 

@@ -2,7 +2,7 @@
 
 Author John Green. Saga KTS-0000002. Generated 2026-05-02.
 
-This is the study and project plan for the Elevance Clinical stack translation. Six tracks, each with a Course and a Project. Three week target. Dates are illustrative and shift as work proceeds.
+This is the study and project plan for the BRAND-healthcare-client-XYZ stack translation. Six tracks, each with a Course and a Project. Three week target. Dates are illustrative and shift as work proceeds.
 
 The chart below renders in GitHub markdown, VSCode with Markdown Preview Mermaid Support, Obsidian, and mermaid.live. Conservative ASCII only per CRSD mitigation.
 

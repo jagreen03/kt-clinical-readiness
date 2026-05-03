@@ -1,4 +1,4 @@
-# Master Prompt — Claude (Elevance Clinical track)
+# Master Prompt — Claude (BRAND-healthcare-client-XYZ track)
 
 **Captured:** 2026-05-01 from chat upload `MASTER_PROMPT_-_FOR_CLAUDE.md`
 **Saga:** KTS-0000001 (initial capture); will be re-used across saga IDs

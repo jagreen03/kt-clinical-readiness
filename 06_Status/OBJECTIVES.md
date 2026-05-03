@@ -1,4 +1,4 @@
-﻿# OBJECTIVES
+# OBJECTIVES
 
 > Forward queue. Items move to HISTORY.md on completion. Newest priority at top.
 >
@@ -15,7 +15,7 @@
 
 ## Weekend (2026-05-02 / 2026-05-03)
 
-- [P1] [2026-05-02] Open KTS-0000002. Prompt body: master prompts (Claude and Gemini, unchanged) plus two attachments inlined: (a) extracted text and tables from the three Elevance Office files, (b) raw output of gh repo list jagreen03 --limit 50. Save raw at 00_Inbox/2026-05-02_KTS-0000002_*-RAW.md, cleaned at 01_Prompts/_shared/...-CLEAN.md. -- John
+- [P1] [2026-05-02] Open KTS-0000002. Prompt body: master prompts (Claude and Gemini, unchanged) plus two attachments inlined: (a) extracted text and tables from the three BRAND-healthcare-client-XYZ Office files, (b) raw output of gh repo list jagreen03 --limit 50. Save raw at 00_Inbox/2026-05-02_KTS-0000002_*-RAW.md, cleaned at 01_Prompts/_shared/...-CLEAN.md. -- John
 - [P1] [2026-05-03] Receive Claude and Gemini responses to KTS-0000002. Expected deliverables: LinkedIn Learning course list, GitHub project ideas, interview talking points. -- John
 - [P1] [2026-05-03] Author KTS-0000002 synthesis. -- John
 - [P1] [2026-05-03] Stand up Ollama on personal computer. Pull nomic-embed-text and llama3.1:8b-instruct-q4_K_M. Verify sqlite-vec extension loads in Python. -- John

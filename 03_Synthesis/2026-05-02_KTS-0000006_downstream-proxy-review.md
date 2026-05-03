@@ -8,7 +8,7 @@ Verdict: Accepted with three real gaps and two minor notes. None structural.
 ## Strengths
 
 - Token strategy decision is the right one for portfolio-defense scope. Service-account credential plus user claim header propagation gives interviewable mechanics without infrastructure overengineering.
-- The Carelon-scale forward-look (RFC 8693 token exchange, mTLS, internal authorization server) is the kind of senior-vs-mid distinction that lands in interviews. Keep this paragraph; it shows the candidate has thought past the demo.
+- The BRAND-healthcare-bpo-XYZ-scale forward-look (RFC 8693 token exchange, mTLS, internal authorization server) is the kind of senior-vs-mid distinction that lands in interviews. Keep this paragraph; it shows the candidate has thought past the demo.
 - Spring Cloud Gateway MVC reversal in favor of hand-rolled @RestController is correct for portfolio-visibility goals. The HTTP mechanics are visible in code rather than buried in YAML.
 - RestClient choice is right. The BFF is a Servlet-stack blocking application; pulling Reactor in for one proxy would be architectural malpractice.
 - Header allow/block/inject taxonomy is clean. Cookie and Authorization correctly identified as inbound-block.

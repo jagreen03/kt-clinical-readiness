@@ -7,13 +7,13 @@
 
 KTS-0000001: KT vault bootstrap. Both Claude and Gemini responses are in. Synthesis seed authored, pending John's sign-off and disk cleanup. Closes when sign-off checklist in 03_Synthesis/2026-05-01_KTS-0000001_KT-bootstrap-SYN.md is fully checked.
 
-Next saga: KTS-0000002: fulfill the actual master-prompt deliverables (LinkedIn Learning courses, GitHub project ideas, interview talking points), grounded in the three Elevance Office files and the gh repo list jagreen03 output that Gemini also flagged were missing.
+Next saga: KTS-0000002: fulfill the actual master-prompt deliverables (LinkedIn Learning courses, GitHub project ideas, interview talking points), grounded in the three BRAND-healthcare-client-XYZ Office files and the gh repo list jagreen03 output that Gemini also flagged were missing.
 
 ## Current Stack Position
 
 - Source stack: .NET 9 / C# / SQL Server / ASP.NET Core / Kubernetes (proficient).
 - Target stack: Java 21+, Spring Boot 3.x, JSP (Servlet 6 / Jakarta EE), MongoDB, AWS, Angular.
-- Engagement: Elevance Health Clinical (parallel to Project ODIN/Carelon).
+- Engagement: BRAND-healthcare-client-XYZ (parallel to BRAND-engagement-codename-XYZ/BRAND-healthcare-bpo-XYZ).
 - Stack-translation priorities (per synthesis):
   - Spring Security 6 plus OAuth 2.0 client plus PKCE: primary.
   - Spring Data MongoDB: primary; JPA read-deep-enough-to-defend, not skipped entirely.
@@ -34,7 +34,7 @@ Personal computer (source-of-truth, where the workstation lives): namespace TBD 
 ## Open Questions
 
 - Personal computer's machine-namespace string (decide on first commit on personal box).
-- Three Elevance Office files: visible on disk in 00_Inbox post-cleanup; content not yet ingested into a Claude/Gemini turn. Extract text and tables and bundle into KTS-0000002 prompt.
+- Three BRAND-healthcare-client-XYZ Office files: visible on disk in 00_Inbox post-cleanup; content not yet ingested into a Claude/Gemini turn. Extract text and tables and bundle into KTS-0000002 prompt.
 - GitHub handle: gh repo list jagreen03 --limit 10 output needed in KTS-0000002 prompt to bypass HTTP fetch restriction.
 - Private vs public Git repo for the vault: lean private; public repos for individual 04_Applications/* projects only when ready.
 

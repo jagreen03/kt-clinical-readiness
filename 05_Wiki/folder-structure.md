@@ -4,7 +4,7 @@
 
 ## Why numbered prefixes
 
-Mirrors your `C:\ODIN` Obsidian convention. Numbered prefixes give deterministic sort order in any file explorer and are tool-agnostic (Windows Explorer, Obsidian, VS Code, `ls`). The numbers don't imply workflow phases — they imply visual priority.
+Mirrors your `C:\BRAND-engagement-codename-XYZ` Obsidian convention. Numbered prefixes give deterministic sort order in any file explorer and are tool-agnostic (Windows Explorer, Obsidian, VS Code, `ls`). The numbers don't imply workflow phases — they imply visual priority.
 
 ## Why split `_shared` from tool-specific subfolders
 
@@ -28,11 +28,11 @@ The corpus IS the vault. Putting embeddings outside the vault creates a synchron
 
 ## Why `08_HW` exists for this track
 
-Project ODIN has its own hardware build registry (`HW-BLD-001`, the EPYC Milan workstation). This track is a different machine with different constraints (CUDA-first, single-GPU, $6K budget vs ODIN's dual-GPU). Keeping the build registries separate prevents cross-contamination of decisions.
+BRAND-engagement-codename-XYZ has its own hardware build registry (`HW-BLD-001`, the EPYC Milan workstation). This track is a different machine with different constraints (CUDA-first, single-GPU, $6K budget vs BRAND-engagement-codename-XYZ's dual-GPU). Keeping the build registries separate prevents cross-contamination of decisions.
 
 ## What does NOT go in this vault
 
-- Carelon / Project ODIN materials. Those live at `C:\ODIN\`.
+- BRAND-healthcare-bpo-XYZ / BRAND-engagement-codename-XYZ materials. Those live at `C:\BRAND-engagement-codename-XYZ\`.
 - Personal estate / family materials.
 - Anything client-confidential without explicit authorization to local-store.
 - Generated AI output that you didn't deliberately keep — let `99_Archive/` handle "kept but superseded"; just don't keep noise in the first place.

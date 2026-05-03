@@ -60,6 +60,6 @@ Handled by the consolidation script (_scripts/consolidate-vault.ps1).
 - [ ] John has run the consolidation script and verified the clean tree.
 - [ ] 06_Status/STATUS.md reflects post-synthesis state.
 - [ ] 06_Status/HISTORY.md has an entry timestamping synthesis sign-off.
-- [ ] KTS-0000002 prompt is drafted and ready to send to both tools with the three Elevance Office files extracted and gh repo list jagreen03 output pasted.
+- [ ] KTS-0000002 prompt is drafted and ready to send to both tools with the three BRAND-healthcare-client-XYZ Office files extracted and gh repo list jagreen03 output pasted.
 
 When all five boxes are checked, KTS-0000001 is closed.

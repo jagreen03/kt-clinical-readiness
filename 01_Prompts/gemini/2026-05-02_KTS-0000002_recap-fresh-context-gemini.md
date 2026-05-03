@@ -1,6 +1,6 @@
 For this turn (KTS-0000002), I will provide three context blocks in my next message:
 
-Sanitized stack constraints from the three Elevance Clinical source documents (Elevance_Clinical_KT_Activity.docx, Elevance_Clinical_Preparation.pptx, Elevance_Clinical_TechStack_Activity.xlsx). Public-shaped technical themes only -- specific framework versions, architectural patterns, auth flows. Project codenames, hostnames, business rules, dollar figures will be scrubbed before paste.
+Sanitized stack constraints from the three BRAND-healthcare-client-XYZ source documents (BRAND-healthcare-client-XYZ_Clinical_KT_Activity.docx, BRAND-healthcare-client-XYZ_Clinical_Preparation.pptx, BRAND-healthcare-client-XYZ_Clinical_TechStack_Activity.xlsx). Public-shaped technical themes only -- specific framework versions, architectural patterns, auth flows. Project codenames, hostnames, business rules, dollar figures will be scrubbed before paste.
 Output of gh repo list jagreen03 --limit 50 so your project recommendations build on what I already have on GitHub.
 My positioning anchors (existing repos and credentials worth surfacing in interview narrative).
 
