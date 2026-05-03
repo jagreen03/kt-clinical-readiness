@@ -1,4 +1,4 @@
-﻿# STATUS
+# STATUS
 
 > Stable headers: do not rename. Future AI agents grep these by exact match.
 > Overwrite this file on each meaningful update; full history lives in HISTORY.md.
@@ -22,7 +22,7 @@ Next saga: KTS-0000002: fulfill the actual master-prompt deliverables (LinkedIn 
 ## Vault Path Convention
 
 Vault root: C:\<machine-namespace>\KT\clinical\Readiness\
-This machine (work laptop, work-from-home setup): C:\ICS-LT-FYXFHG4\KT\clinical\Readiness\
+This machine (work laptop, work-from-home setup): C:\<work-laptop-hostname>\KT\clinical\Readiness\
 Personal computer (source-of-truth, where the workstation lives): namespace TBD on first commit.
 
 ## Source-of-Truth Rule

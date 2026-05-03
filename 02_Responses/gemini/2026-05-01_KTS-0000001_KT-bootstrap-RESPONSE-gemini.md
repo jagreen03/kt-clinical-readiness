@@ -1,4 +1,4 @@
-﻿# KTS-0000001 - Bootstrap Response (Gemini)
+# KTS-0000001 - Bootstrap Response (Gemini)
 
 **Saga:** KTS-0000001
 **Date:** 2026-05-01
@@ -13,23 +13,23 @@
 
 ## 1. Directory Path Correction
 
-The provided command output shows your bootstrap payload was extracted to C:\ICS-LT-FYXFHG4\KT\clinical\Readiness\Files_20260501-1147\. Your stated P0 architecture dictates this skeleton must live at C:\RAW\KT\ to allow future agents deterministic paths for reading 06_Status/STATUS.md.
+The provided command output shows your bootstrap payload was extracted to C:\<work-laptop-hostname>\KT\clinical\Readiness\Files_20260501-1147\. Your stated P0 architecture dictates this skeleton must live at C:\RAW\KT\ to allow future agents deterministic paths for reading 06_Status/STATUS.md.
 
 Run this to normalize the state before executing git init:
 
 ```dos
-xcopy /E /I /H "C:\ICS-LT-FYXFHG4\KT\clinical\Readiness\Files_20260501-1147\*" "C:\RAW\KT\"
+xcopy /E /I /H "C:\<work-laptop-hostname>\KT\clinical\Readiness\Files_20260501-1147\*" "C:\RAW\KT\"
 ```
 
 ## 2. Hardware and Environment Isolation Protocol
 
 The 08_HW folder contains the ~$5.9K Threadripper 7960X workstation build and RTX 5090 GPU specs. Personal AI hardware projects and budgets must be kept strictly separate from professional contract work for Infinite Computer Solutions.
 
-Because the ICS-LT-FYXFHG4 device is an Infinite Computer Solutions asset, you must remove 08_HW/ and all local AI workstation procurement details from this machine's local storage and its associated Git repository. Maintain the Elevance Clinical software stack translation in C:\RAW\KT\, but move the hardware planning explicitly and exclusively to a personal device.
+Because the <work-laptop-hostname> device is an Infinite Computer Solutions asset, you must remove 08_HW/ and all local AI workstation procurement details from this machine's local storage and its associated Git repository. Maintain the Elevance Clinical software stack translation in C:\RAW\KT\, but move the hardware planning explicitly and exclusively to a personal device.
 
 ## 3. GitHub and Elevance Document Gaps
 
-The three Elevance Office files (Elevance_Clinical_KT_Activity.docx, Elevance_Clinical_Preparation.pptx, Elevance_Clinical_TechStack_Activity.xlsx) are visible in your directory at C:\ICS-LT-FYXFHG4\KT\clinical\Readiness\ but their contents were not pushed to the context window.
+The three Elevance Office files (Elevance_Clinical_KT_Activity.docx, Elevance_Clinical_Preparation.pptx, Elevance_Clinical_TechStack_Activity.xlsx) are visible in your directory at C:\<work-laptop-hostname>\KT\clinical\Readiness\ but their contents were not pushed to the context window.
 
 For the next turn (KTS-0000002):
 

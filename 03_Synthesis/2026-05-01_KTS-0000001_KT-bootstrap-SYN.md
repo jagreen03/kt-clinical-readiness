@@ -1,4 +1,4 @@
-﻿# KTS-0000001 - Bootstrap Synthesis (DRAFT, awaits John's sign-off)
+# KTS-0000001 - Bootstrap Synthesis (DRAFT, awaits John's sign-off)
 
 **Saga:** KTS-0000001
 **Date:** 2026-05-01
@@ -16,7 +16,7 @@
 
 ### 1. Vault root path: C:\<machine-namespace>\KT\clinical\Readiness\
 
-Decision: keep your existing classification. The vault root is Readiness on whichever machine is the source of truth. The <machine-namespace> prefix (ICS-LT-FYXFHG4 on the work laptop, whatever convention you use on the personal computer) is your machine-disambiguation layer when files sync; it is not a corporate-policy boundary.
+Decision: keep your existing classification. The vault root is Readiness on whichever machine is the source of truth. The <machine-namespace> prefix (<work-laptop-hostname> on the work laptop, whatever convention you use on the personal computer) is your machine-disambiguation layer when files sync; it is not a corporate-policy boundary.
 
 Why this overrides Claude's C:\RAW\KT\ and Gemini's xcopy recommendation:
 - C:\RAW\KT\ was Claude's arbitrary suggestion last turn; your real schema is <machine-ns>\KT\<track>\<phase>\, which is more disciplined and survives multi-track expansion.

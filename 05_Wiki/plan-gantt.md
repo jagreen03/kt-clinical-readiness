@@ -58,4 +58,4 @@ If reviewing this in GitHub, open an issue against the repository and reference 
 
 ## Save location
 
-Vault path C colon backslash ICS-LT-FYXFHG4 backslash KT backslash clinical backslash Readiness backslash 05_Wiki backslash plan-gantt.md
+Vault path C colon backslash <work-laptop-hostname> backslash KT backslash clinical backslash Readiness backslash 05_Wiki backslash plan-gantt.md

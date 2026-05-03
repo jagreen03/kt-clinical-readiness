@@ -1,7 +1,7 @@
-﻿# KT - Elevance Clinical Knowledge Transfer Vault
+# KT - Elevance Clinical Knowledge Transfer Vault
 
 **Root path (Windows):** `C:\<machine-namespace>\KT\clinical\Readiness\`
-This machine: `C:\ICS-LT-FYXFHG4\KT\clinical\Readiness\`
+This machine: `C:\<work-laptop-hostname>\KT\clinical\Readiness\`
 
 **Owner:** John Green
 **Purpose:** Stack-translation effort for Elevance Health Clinical engagement (.NET to Java/Spring Boot/JSP/MongoDB/AWS/Angular). Distinct from Project ODIN (Carelon/Infinite). The `<machine-namespace>` prefix is John's machine-disambiguation classification (so synced files are traceable to their origin machine). It is NOT a corporate-policy boundary. Both work and personal laptops are under John's chain of custody.
