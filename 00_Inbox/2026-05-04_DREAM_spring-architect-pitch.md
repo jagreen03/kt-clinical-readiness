@@ -36,3 +36,9 @@ Pitching as Spring Boot architect is the unemployment hedge. The BFF works end-t
 Closing for the night.
 
 NEXT ACTION: Open Cynthia, paste: "Cynthia, compress the DREAM in 00_Inbox/2026-05-04_DREAM_spring-architect-pitch.md. Take it to Prompt-able first."
+
+## Trajectory Confirmation (2026-05-04 morning)
+
+This DREAM is the primary trajectory for KTS-0000009. Documentation rigor first.
+
+Sister DREAM parked at 00_Inbox/2026-05-04_DREAM_rbac-permission-matrix.md - RBAC implementation queued for KTS-0000010 or later. Documentation comes before new feature work.
