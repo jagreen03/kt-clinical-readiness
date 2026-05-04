@@ -34,3 +34,5 @@ Pitching as Spring Boot architect is the unemployment hedge. The BFF works end-t
 [DREAM] — not yet Prompt-able. Cynthia 1b takes this from raw thought to specification tomorrow when Catalyst-001 is rested.
 
 Closing for the night.
+
+NEXT ACTION: Open Cynthia, paste: "Cynthia, compress the DREAM in 00_Inbox/2026-05-04_DREAM_spring-architect-pitch.md. Take it to Prompt-able first."
