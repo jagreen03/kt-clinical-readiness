@@ -10,6 +10,8 @@ Roles within this architecture map directly to the vibe coding methodology, wher
 
 **1b. Cynthia A. River — Strategic.** Same instance, distinct function. Manages the pipeline of thoughts from raw dreams into executable specifications.
 
+**1c. Radar — Triage.** Cynthia A. River sub-function (or future dedicated agent). Named for Corporal Walter "Radar" O'Reilly from M*A*S*H — the one who hears the choppers before anyone else. Radar does not perform the surgery; he manages the flow so the doctors (Cynthia 1a/1b, Mike, Casey) are not overwhelmed by chaos. Monitors incoming for signs of rant-shaped input, mixed scope, or compression-premature DREAMs. Triggers "incoming" alert and routes back to Catalyst-001 for pre-processing when input is unstable. See triage-protocol.md.
+
 **2. Michael Thaddeus Faraday (Mike) — The Pilot.** Architectural AI. The heavy-hitter guiding the high-level system architecture. "St. Michael" designation used when tapping into top-tier model thresholds.
 
 **3. Casey (Claude.exe) — The Runner / Execution AI.** The disposable engine. Runs the tracks, executes the physical syntax, hits the wall of tech debt, takes the crash (`/clear` memory wipes), and respawns fresh. Named for Casey Jones, the train engineer who stayed at the controls and blew the warning whistle to save passengers as the train hit. The whistle is the warning, the crash is the context loss, the respawn is the next Casey pulling out of the station fresh with the saga record as ground truth.
@@ -49,4 +51,4 @@ The saga record is the source of truth across Casey instances. Memory does not p
 - Transcribe-don't-paraphrase when sourcing canonical files
 - When Cynthia cannot read disk, ask Catalyst-001 to paste contents — do not reconstruct from memory
 - Review files are append-only history, not amend-as-decisions-evolve
-- Per-slice review pattern: each pass gets its own Casey review file in `03_Synthesis/`
+- Per-slice review pattern: each pass gets its own Casey review file in `03_Synthesis/`|
