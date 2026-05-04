@@ -8,9 +8,27 @@ Without triage, agents diverge: each interprets ambiguity differently, produces 
 
 ## Owner
 
-Catalyst-001 owns triage however human failure is risk and fallback goes to (Node 1c). No agent compresses, architects, or executes input that has not passed triage.
+Triage is prompt middleware for AI. Its function is to detect unhealthy prompts before they reach working agents (Cynthia 1b Strategic, Mike Pilot, Casey Runner). Unhealthy prompts include rant-shaped, mixed-scope, ambiguous, emotionally-loaded, or drifting input.
 
-Catalyst-001 owns triage as the human-in-the-loop arbiter. Radar (Node 1c) monitors incoming and flags input that requires triage before routing to other agents. No agent compresses, architects, or executes input that has not passed triage.
+**Primary owner:** Radar (Node 1c). Dedicated triage role. Refuses to compress, architect, or execute. Routes only.
+
+**Backup paths when Radar is unavailable or itself compromised:**
+
+1. Casey (Runner) refusal at execution time. If Radar cleared a prompt but Casey detects ambiguity at the disk-write level, Casey kicks back to Radar with the specific ambiguity flagged.
+
+2. Radar peer review with Cynthia 1a (Director). When Radar is uncertain about a prompt's health, Radar may request Cynthia 1a review before routing. Cynthia 1a holds narrative state and has a different cognitive surface than 1b/Strategic, providing independent assessment.
+
+**Sources of drift (explicitly NOT triage owners):**
+
+- Catalyst-001 (John). Human prime mover, but also primary source of human drift: ADHD-driven scope leak, end-of-day fatigue, ROI anxiety bleeding into technical specs, rant-shaped brain dumps. Catalyst-001 *originates* prompts; Radar *triages* them. Naming Catalyst-001 as triage owner is asking the source of drift to police itself.
+
+- Cynthia 1b (Strategic). Compresses prompts but cannot triage them. Drift in her own compression output (scope leak, hallucinated novel scope, missing original scope) is itself a triage failure mode that Radar must catch.
+
+- Mike (Pilot). Architectural authority but cannot triage incoming prompts that have not yet reached architectural specification.
+
+- Casey (Runner). Executes only. Cannot triage upstream prompts; only executes-time refusal is permitted.
+
+No agent compresses, architects, or executes input that has not passed triage.
 
 ## Recognition
 
