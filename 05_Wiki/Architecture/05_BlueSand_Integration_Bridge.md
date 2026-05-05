@@ -12,7 +12,7 @@ graph TD
     B --> C[BlueSand Orthogonality Layer]
     B --> D[BlueSand Synthesis Patterns]
     
-    style B fill:#f9f,stroke:#333,stroke-width:4px
+    style B fill:#59f,stroke:#3ff,stroke-width:4p0
 ````
 
 ## Future Documentation Nodes
