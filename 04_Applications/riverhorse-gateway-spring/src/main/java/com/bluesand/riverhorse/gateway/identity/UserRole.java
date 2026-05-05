@@ -6,7 +6,7 @@ public enum UserRole {
     ADMINISTRATOR("System Administrator", true),
 
     // Grouping: Client/Stakeholder
-    SME("Subject Matter Expert", false),
+    SME("Subject Matter Expert", true),
     CLIENT_REPORTING_MANAGER("Client Reporting Manager", false),
     CLIENT_ONBOARDING_MANAGER("Client Onboarding Manager", false),
     CLIENT_ONBOARDING_STATUS("Client Onboarding Status", false),
@@ -16,10 +16,10 @@ public enum UserRole {
     CONTRACTING_COMPANY_ONBOARDING("Contracting Company Onboarding", false),
 
     // Grouping: Development Team
-    LEAD_DEVELOPER("Lead Developer", false),
+    LEAD_DEVELOPER("Lead Developer", true),
     LEAD_QA("Lead QA", false),
     SCRUM_MASTER("Scrum Master", false),
-    TOWER_LEAD("Tower Lead", false),
+    TOWER_LEAD("Tower Lead", true),
     INTERVIEWER("Interviewer", false),
     CANDIDATE("Candidate", false);
 

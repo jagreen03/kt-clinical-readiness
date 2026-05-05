@@ -11,8 +11,8 @@ public class RoleRegistry {
     private final Map<String, UserRole> registry = new HashMap<>();
 
     public RoleRegistry() {
-        // TODO: Transition to persistent store in future persistence saga
         registry.put("jagreen03@gmail.com", UserRole.ADMINISTRATOR);
+        registry.put("jagdavit123@gmail.com", UserRole.LEAD_DEVELOPER);
     }
 
     public UserRole getRoleForEmail(String email) {
