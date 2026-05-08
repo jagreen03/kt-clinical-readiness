@@ -27,9 +27,11 @@ public class SecurityConfig {
                 .requestMatchers("/dev/**").hasRole("LEAD_DEVELOPER")
                 .anyRequest().authenticated()
             )
-            .oauth2Login(oauth -> oauth
-                // existing /api/me-driving config preserved here
-            )
+            .oauth2Login(oauth -> {
+                // your config goes here, e.g.:
+                // oauth.loginPage("/login");
+                // oauth.successHandler(myHandler);
+            })
             .logout(logout -> logout
                 .logoutSuccessUrl("/")
                 .invalidateHttpSession(true)
