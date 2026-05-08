@@ -4,7 +4,7 @@
 ## Accomplishments
 - Codified 13-role taxonomy into UserRole enum.
 - Implemented "Disabled-by-default" pattern for runtime role safety.
-- Created RoleRegistry with in-memory bootstrap for jagreen03@gmail.com -> ADMINISTRATOR.
+- Created RoleRegistry with in-memory bootstrap for ODIN_BOOTSTRAP_ADMIN_EMAIL  -> ADMINISTRATOR.
 - Wired GrantedAuthoritiesMapper into Spring Security pipeline.
 - Verified identity-to-authority mapping on home dashboard.
 

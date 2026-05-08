@@ -1,0 +1,73 @@
+<h2 mat-dialog-title>Edit Methodology Task: {{ data.task.wbs }}</h2>
+<mat-dialog-content>
+  <mat-stepper linear #stepper>
+    <mat-step [editable]="false">
+      <ng-template matStepLabel>Context</ng-template>
+      <div class="step-content">
+        <p><strong>Team:</strong> {{ data.teamId }}</p>
+        <p><strong>Phase:</strong> {{ data.phase.name }} ({{ data.phase.id }})</p>
+        <p class="doctrine-note">Carelon Methodology Alignment: Position {{ data.phase.position }}</p>
+        <button mat-button matStepperNext>Modify Plan</button>
+      </div>
+    </mat-step>
+
+    <mat-step>
+      <ng-template matStepLabel>Edits</ng-template>
+      <div class="form-grid">
+        <mat-form-field appearance="outline">
+          <mat-label>Task Name</mat-label>
+          <input matInput [ngModel]="editableTask().name" (ngModelChange)="onFieldChange('name', $event)">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Days</mat-label>
+          <input matInput type="number" [ngModel]="editableTask().days" (ngModelChange)="onFieldChange('days', $event)">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Start Date</mat-label>
+          <input matInput type="date" [ngModel]="editableTask().startDate | date:'yyyy-MM-dd'" (ngModelChange)="onDateChange('startDate', $event)">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Status</mat-label>
+          <mat-select [ngModel]="editableTask().status" (ngModelChange)="onFieldChange('status', $event)">
+            <mat-option value="Not Started">Not Started</mat-option>
+            <mat-option value="In Progress">In Progress</mat-option>
+            <mat-option value="At Risk">At Risk</mat-option>
+            <mat-option value="Completed">Completed</mat-option>
+            <mat-option value="Blocked">Blocked</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>% Done</mat-label>
+          <input matInput type="number" step="0.1" [ngModel]="editableTask().pctDone" (ngModelChange)="onFieldChange('pctDone', $event)">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Notes / Exit Criteria</mat-label>
+          <textarea matInput rows="3" [ngModel]="editableTask().notes" (ngModelChange)="onFieldChange('notes', $event)"></textarea>
+        </mat-form-field>
+      </div>
+      <button mat-button matStepperNext>Review Impact</button>
+    </mat-step>
+
+    <mat-step>
+      <ng-template matStepLabel>Impact</ng-template>
+      <div class="impact-box" *ngIf="preview()">
+        <h3>Methodology Rollup Impact</h3>
+        <p>Phase End Date: 
+          <span class="old">{{ data.phase.computedEnd | date:'MM/dd' }}</span> 
+          &rarr; 
+          <span class="new">{{ preview().computedEnd | date:'MM/dd' }}</span>
+        </p>
+        <p>Phase Progress: {{ preview().computedPct! | percent }}</p>
+      </div>
+      <div class="actions">
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-raised-button color="primary" (click)="onSave()">Save & Close</button>
+      </div>
+    </mat-step>
+  </mat-stepper>
+</mat-dialog-content>

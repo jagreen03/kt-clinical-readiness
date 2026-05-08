@@ -22,4 +22,4 @@
 ## Carry-Forward to KTS-000011
 - Implement Identity Engine (Pass 1).
 - Map Google 'email' claim to custom UserRole authorities.
-- Enable ADMINISTRATOR role for jagreen03@gmail.com.
+- Enable ADMINISTRATOR role for ODIN_BOOTSTRAP_ADMIN_EMAIL .

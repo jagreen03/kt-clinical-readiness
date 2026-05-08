@@ -41,3 +41,7 @@ Thumbs.db
 
 # Spring Initializr Help
 HELP.md
+
+# Local Mongo / Docker
+.env
+mongo_data/

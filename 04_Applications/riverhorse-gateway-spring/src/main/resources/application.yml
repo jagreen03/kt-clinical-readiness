@@ -36,6 +36,10 @@ spring:
           google:
             issuer-uri: https://accounts.google.com
             user-name-attribute: sub
+  data:
+    mongodb:
+      uri: ${SPRING_DATA_MONGODB_URI:mongodb://rhuser:rhpass_local_only@localhost:27017/riverhorse?authSource=admin}
+      auto-index-creation: true
 
 management:
   endpoints:
@@ -57,3 +61,12 @@ proxy:
   services:
     clinical: https://clinical-internal.example.com
     billing: https://billing-internal.example.com
+
+odin:
+  bootstrap:
+    admin-email: ${ODIN_BOOTSTRAP_ADMIN_EMAIL:}
+    lead-developer-email: ${ODIN_BOOTSTRAP_LEAD_DEVELOPER_EMAIL:}
+  security:
+    verification-window-hours: ${ODIN_SECURITY_VERIFICATION_WINDOW_HOURS:6}
+    persona-picker-path: /persona/select
+    guest-landing-path: /

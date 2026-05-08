@@ -11,8 +11,8 @@ public class RoleRegistry {
     private final Map<String, UserRole> registry = new HashMap<>();
 
     public RoleRegistry() {
-        registry.put("jagreen03@gmail.com", UserRole.ADMINISTRATOR);
-        registry.put("jagdavit123@gmail.com", UserRole.LEAD_DEVELOPER);
+        registry.put("ODIN_BOOTSTRAP_ADMIN_EMAIL ", UserRole.ADMINISTRATOR);
+        registry.put("ODIN_BOOTSTRAP_LEAD_DEVELOPER_EMAIL", UserRole.LEAD_DEVELOPER);
     }
 
     public UserRole getRoleForEmail(String email) {

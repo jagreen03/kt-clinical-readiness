@@ -1,0 +1,22 @@
+<div class="home-container">
+  @if (authService.currentUser() === undefined) {
+    <div class="loading-state">
+      <p>Synchronizing with Riverhorse Gateway...</p>
+    </div>
+  } @else if (authService.currentUser() !== null) {
+    <div class="auth-state">
+      <h1>RiverHorse Gateway: Persona Dashboard</h1>
+      <p><strong>Current User:</strong> {{ authService.currentUser()?.name }}</p>
+      <p><strong>Email:</strong> {{ authService.currentUser()?.email }}</p>
+      <p><strong>Active Persona:</strong> [{{ authService.currentUser()?.roles?.join(', ') }}]</p>
+      <hr>
+      <button (click)="logout()" class="btn-logout">Log Out to Reset (Full Clear)</button>
+    </div>
+  } @else {
+    <div class="public-state">
+      <h1>Welcome to the RiverHorse Gateway</h1>
+      <p>Public landing page. Please log in to access the platform.</p>
+      <button (click)="authService.login()" class="btn-login">Login with Google</button>
+    </div>
+  }
+</div>

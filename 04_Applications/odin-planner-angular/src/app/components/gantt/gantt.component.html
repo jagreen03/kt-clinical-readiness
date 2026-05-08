@@ -1,0 +1,58 @@
+<div class="gantt-wrapper">
+  <div class="gantt-container">
+    <div class="gantt-header">
+	<div class="header-row months">
+	  <div class="cell stub"></div>
+	  <div class="cell month" style="flex: 2">MARCH</div>
+	  <div class="cell month" style="flex: 4">APRIL</div>
+	  <div class="cell month" style="flex: 4">MAY</div>
+	  <div class="cell month" style="flex: 5">JUNE</div>
+	  <div class="cell month" style="flex: 4">JULY</div>
+	  <div class="cell month" style="flex: 1">AUG</div>
+	</div>
+      <div class="header-row weeks">
+        <div class="cell stub"></div>
+        @for (w of [].constructor(20); track $index) {
+          <div class="cell week">W{{ $index + 1 }}</div>
+        }
+      </div>
+      <div class="header-row dates">
+        <div class="cell stub"></div>
+        @for (d of timelineDates; track d) {
+          <div class="cell date"><span>{{ d | date:'MM/dd' }}</span></div>
+        }
+      </div>
+    </div>
+
+    <div class="gantt-body">
+      @for (team of teams(); track team.id) {
+        <div class="team-group">
+          <div class="team-banner" [routerLink]="['/teams', team.id]">
+            {{ team.id }}: {{ team.name }}
+          </div>
+
+          @for (section of team.sections; track section.sectionLabel) {
+            <div class="section-banner" *ngIf="team.sections.length > 1">
+              Project Section: {{ section.sectionLabel }}
+            </div>
+
+            @for (phase of section.phases; track phase.id) {
+              <div class="phase-row">
+                <div class="phase-label" [routerLink]="['/dashboard/phases']">{{ phase.id }}</div>
+                <div class="lane">
+                  <div class="bar" 
+                       [style.left.%]="getLeft(phase.computedStart)"
+                       [style.width.%]="getWidth(phase.computedStart, phase.computedEnd)"
+                       [style.background-color]="phaseColors[phase.position]"
+                       [matTooltip]="getTooltip(phase)">
+                  </div>
+                </div>
+              </div>
+            }
+          }
+          <div class="team-separator"></div>
+        </div>
+      }
+    </div>
+  </div>
+</div>

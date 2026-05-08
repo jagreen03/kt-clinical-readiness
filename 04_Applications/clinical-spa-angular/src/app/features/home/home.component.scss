@@ -1,0 +1,33 @@
+/* Path: 04_Applications/clinical-spa-angular/src/app/features/home/home.component.scss */
+.home-container {
+  padding: 2rem;
+  font-family: sans-serif;
+  max-width: 800px;
+  margin: 0 auto;
+
+  .loading-state {
+    color: #666;
+    font-style: italic;
+  }
+
+  .btn-login {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #0056b3;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    margin-top: 1rem;
+    cursor: pointer;
+    border: none;
+  }
+
+  .btn-logout {
+    padding: 10px 20px;
+    background-color: #ffcccc;
+    border: 1px solid #cc0000;
+    cursor: pointer;
+    border-radius: 4px;
+    margin-top: 1rem;
+  }
+}
